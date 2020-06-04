@@ -1,31 +1,41 @@
 package br.com.zup.nossacasacodigo.controllers;
 
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.Date;
 
-public class Validator {
-	public void emailValidator(String email) {
+import br.com.zup.nossacasacodigo.author.Author;
+
+public class AuthorsInformarionValidators {
+	public void emailValidator(String email, Map<String, Author> authors) {
 		//verificar se é uma string nula ou vazia
 		isEmpty(email);
 
-		//verifica se é um e-mail válido
-		boolean isEmailValid = false;
+		boolean isEmailValid = false; 
 		if (email != null && email.length() > 0) {
+			//Determinamos uma expressão padrão que determina um e-mail válido através da String expression
 			String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
+			//Definimos nossa expressão como um padrão e a tornamos sensível a letras maiusculas
 			Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
+			//verificamos se o e-mail inserido obedece ao padrão determinado
 			Matcher matcher = pattern.matcher(email);
 			if (matcher.matches()) {
 				isEmailValid = true;
 			}
 		}
-
+		
 		if(isEmailValid == false) {
-			throw new RuntimeException("Email inválido");
+			throw new IllegalArgumentException();
+		}
+		
+		if(authors.containsKey(email)){
+			throw new RuntimeException("Email já cadastrado");
 		}
 	}
 
-	public void dateValidator(String dataTime) {
-		isEmpty(dataTime);
+	public void dateValidator(Date dataTime) {
+		isEmpty(dataTime.toString());
 	}
 
 	public void nameValidator(String name) {
@@ -36,7 +46,7 @@ public class Validator {
 		isEmpty(description);
 
 		if(description.length() > 400) {
-			throw new RuntimeException("Descrição maior do que o máximo permitido");
+			throw new IllegalArgumentException();
 		}
 	}
 

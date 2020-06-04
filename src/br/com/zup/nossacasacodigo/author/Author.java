@@ -1,37 +1,23 @@
 package br.com.zup.nossacasacodigo.author;
 
+import java.util.Date;
+
+import br.com.zup.nossacasacodigo.controllers.AuthorService;
+
 public class Author {
-	// nome, email e uma descrição
 	private String name;
 	private String email;
 	private String description;
-	private String createdAt;
+	private Date createdAt;
 	
-	public Author() {
-		super();
-	}
-	
-	public Author(String name, String email, String description, String createdAt) {
+	public Author(String name, String email, String description, Date createdAt) {
+		AuthorService service = new AuthorService();
+		
+		service.validateAllData(name, email, description, createdAt);
+		
 		this.name = name;
 		this.email = email;
 		this.description = description;
-		this.createdAt = createdAt;
-	}
-	
-	//Setters
-	public void setEmail(String email) { 
-		this.email = email; 
-	}
-	
-	public void setName(String name) {
-		this.name = name;
-	}
-	
-	public void setDescription(String description) {
-		this.description = description;
-	}
-	
-	public void setCreatedAt(String createdAt) {
 		this.createdAt = createdAt;
 	}
 	
@@ -48,7 +34,7 @@ public class Author {
 		return this.description;
 	}
 	
-	public String getCreatedAt() {
+	public Date getCreatedAt() {
 		return this.createdAt;
 	}
 }
