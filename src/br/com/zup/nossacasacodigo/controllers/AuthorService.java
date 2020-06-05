@@ -6,15 +6,15 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import br.com.zup.nossacasacodigo.author.Author;
+import br.com.zup.nossacasacodigo.database.CollectionOfAuthors;
 
 public class AuthorService {
-	Map<String, Author> authors =  new HashMap<String, Author>();
+	CollectionOfAuthors database =  new CollectionOfAuthors();
 	
 	public Author newAuthor(String name, String email, String description) {
 		Date dataTime = getDateTime();
 		Author newAuthor = new Author(name, email, description, dataTime);
-		AuthorsInformarionValidators.emailIsUnic(newAuthor.getEmail(), authors);
-		authors.put(email, newAuthor);
+		database.addNewAuthor(newAuthor);
 		return newAuthor;
 	}
 
@@ -30,7 +30,7 @@ public class AuthorService {
 	}
 
 	public void showAllAuthors() {
-		for (Author print : authors.values()) { 
+		for (Author print : database.getCollection().values()) { 
 			showOne(print);
 		}
 	}
@@ -49,7 +49,7 @@ public class AuthorService {
 	
 	public int quantityOfAuthors() {
 		int quantity = 0;
-		for (Author print : authors.values()) { 
+		for (Author print : database.getCollection().values()) { 
 			quantity++;
 		}
 		return quantity;

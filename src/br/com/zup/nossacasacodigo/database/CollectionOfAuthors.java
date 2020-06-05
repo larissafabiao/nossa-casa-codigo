@@ -1,0 +1,21 @@
+package br.com.zup.nossacasacodigo.database;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import br.com.zup.nossacasacodigo.author.Author;
+import br.com.zup.nossacasacodigo.controllers.AuthorsInformarionValidators;
+
+public class CollectionOfAuthors {
+	Map<String, Author> authors =  new HashMap<String, Author>();
+	
+	public Map<String, Author> getCollection() {
+		return authors;
+	}
+	
+	public void addNewAuthor(Author newAuthor) {
+		AuthorsInformarionValidators.emailIsUnic(newAuthor.getEmail(), authors);
+		authors.put(newAuthor.getEmail(), newAuthor);
+	}
+}
+
