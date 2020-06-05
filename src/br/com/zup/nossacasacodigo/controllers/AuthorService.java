@@ -8,21 +8,14 @@ import java.util.Map;
 import br.com.zup.nossacasacodigo.author.Author;
 
 public class AuthorService {
-	AuthorsInformarionValidators check = new AuthorsInformarionValidators();
 	Map<String, Author> authors =  new HashMap<String, Author>();
 	
 	public Author newAuthor(String name, String email, String description) {
 		Date dataTime = getDateTime();
 		Author newAuthor = new Author(name, email, description, dataTime);
+		AuthorsInformarionValidators.emailIsUnic(newAuthor.getEmail(), authors);
 		authors.put(email, newAuthor);
 		return newAuthor;
-	}
-	
-	public void validateAllData (String name, String email, String description, Date dataTime) {
-		check.emailValidator(email, authors);
-		check.nameValidator(name);
-		check.descriptionValidator(description);
-		check.dateValidator(dataTime);
 	}
 
 	private Date getDateTime() {
@@ -42,7 +35,7 @@ public class AuthorService {
 		}
 	}
 	
-	void showOne(Author author) {
+	public void showOne(Author author) {
 		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 		String date = dateFormat.format(author.getCreatedAt());
 		
@@ -52,5 +45,13 @@ public class AuthorService {
 		System.out.println("Descrição: " + author.getDescription());
 		System.out.println("Criado em: " + date);
 		System.out.println("-------------------------------------------------");
+	}
+	
+	public int quantityOfAuthors() {
+		int quantity = 0;
+		for (Author print : authors.values()) { 
+			quantity++;
+		}
+		return quantity;
 	}
 }

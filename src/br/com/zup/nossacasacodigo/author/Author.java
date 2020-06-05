@@ -3,6 +3,7 @@ package br.com.zup.nossacasacodigo.author;
 import java.util.Date;
 
 import br.com.zup.nossacasacodigo.controllers.AuthorService;
+import br.com.zup.nossacasacodigo.controllers.AuthorsInformarionValidators;
 
 public class Author {
 	private String name;
@@ -10,10 +11,11 @@ public class Author {
 	private String description;
 	private Date createdAt;
 	
-	public Author(String name, String email, String description, Date createdAt) {
-		AuthorService service = new AuthorService();
-		
-		service.validateAllData(name, email, description, createdAt);
+	public Author(String name, String email, String description, Date createdAt) {		
+		AuthorsInformarionValidators.emailValidator(email);
+		AuthorsInformarionValidators.nameValidator(name);
+		AuthorsInformarionValidators.descriptionValidator(description);
+		AuthorsInformarionValidators.dateValidator(createdAt);
 		
 		this.name = name;
 		this.email = email;

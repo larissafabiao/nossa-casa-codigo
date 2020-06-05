@@ -8,8 +8,7 @@ import java.util.Date;
 import br.com.zup.nossacasacodigo.author.Author;
 
 public class AuthorsInformarionValidators {
-	public void emailValidator(String email, Map<String, Author> authors) {
-		//verificar se é uma string nula ou vazia
+	public static void emailValidator(String email) {
 		isEmpty(email);
 
 		boolean isEmailValid = false; 
@@ -28,21 +27,23 @@ public class AuthorsInformarionValidators {
 		if(isEmailValid == false) {
 			throw new IllegalArgumentException();
 		}
-		
+	}
+	
+	public static void emailIsUnic(String email, Map<String, Author> authors) {
 		if(authors.containsKey(email)){
 			throw new RuntimeException("Email já cadastrado");
 		}
 	}
 
-	public void dateValidator(Date dataTime) {
+	public static void dateValidator(Date dataTime) {
 		isEmpty(dataTime.toString());
 	}
 
-	public void nameValidator(String name) {
+	public static void nameValidator(String name) {
 		isEmpty(name);
 	}
 
-	public void descriptionValidator(String description) {
+	public static void descriptionValidator(String description) {
 		isEmpty(description);
 
 		if(description.length() > 400) {
@@ -50,15 +51,15 @@ public class AuthorsInformarionValidators {
 		}
 	}
 
-	public void isEmpty(String string) {
+	public static void isEmpty(String string) {
 		if (string == null) {
 			throw new RuntimeException("Erro de Preenchimento de String");
 		}
-		//2- Verificar se a String está vazia
+		//Verificar se a String está vazia
 		if (string.isEmpty()) {
 			throw new RuntimeException("Erro de Preenchimento de String");
 		}
-		//3 - Verificar se a String não possui algum caractere válido
+		//Verificar se a String não possui algum caractere válido
 		if (string.trim().isEmpty()) {
 			throw new RuntimeException("Erro de Preenchimento de String");
 		}
