@@ -2,9 +2,9 @@ package br.com.zup.nossacasacodigo.controllers;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import br.com.zup.nossacasacodigo.author.Author;
 import br.com.zup.nossacasacodigo.database.CollectionOfAuthors;
 
@@ -12,20 +12,19 @@ public class AuthorService {
 	CollectionOfAuthors database =  new CollectionOfAuthors();
 	
 	public Author newAuthor(String name, String email, String description) {
-		Date dataTime = getDateTime();
+		LocalDateTime dataTime = getDateTime();
 		Author newAuthor = new Author(name, email, description, dataTime);
 		database.addNewAuthor(newAuthor);
 		return newAuthor;
 	}
 
-	private Date getDateTime() {
-		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-		Date date = new Date();
-				
-		if (dateFormat.format(date) == null) {
+	private LocalDateTime getDateTime() {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+		LocalDateTime date = LocalDateTime.now();;
+		
+		if (formatter.format(date) == null) {
 			System.out.println("Data e instante inválidos");
 		}
-
 		return date;
 	}
 

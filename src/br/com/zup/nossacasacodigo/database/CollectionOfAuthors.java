@@ -17,7 +17,7 @@ public class CollectionOfAuthors {
 		authors.put(newAuthor.getEmail(), newAuthor);
 	}
 	
-	public static void emailIsUnic(String email, Map<String, Author> authors) {
+	private void emailIsUnic(String email, Map<String, Author> authors) {
 		if(authors.containsKey(email)){
 			throw new RuntimeException("Email já cadastrado");
 		}

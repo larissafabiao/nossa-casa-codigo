@@ -1,19 +1,16 @@
 package br.com.zup.nossacasacodigo.author;
 
-import java.util.Date;
-import java.util.Map;
+import java.time.LocalDateTime;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import br.com.zup.nossacasacodigo.controllers.AuthorService;
 
 public class Author {
 	private String name;
 	private String email;
 	private String description;
-	private Date createdAt;
+	private LocalDateTime createdAt;
 	
-	public Author(String name, String email, String description, Date createdAt) {		
+	public Author(String name, String email, String description, LocalDateTime createdAt) {		
 		emailValidator(email);
 		nameValidator(name);
 		descriptionValidator(description);
@@ -38,12 +35,12 @@ public class Author {
 		return this.description;
 	}
 	
-	public Date getCreatedAt() {
+	public LocalDateTime getCreatedAt() {
 		return this.createdAt;
 	}
 	
 	//Validações
-	public static void emailValidator(String email) {
+	private void emailValidator(String email) {
 		isEmpty(email);
 
 		boolean isEmailValid = false; 
@@ -64,15 +61,15 @@ public class Author {
 		}
 	}
 
-	public static void dateValidator(Date dataTime) {
+	private void dateValidator(LocalDateTime dataTime) {
 		isEmpty(dataTime.toString());
 	}
 
-	public static void nameValidator(String name) {
+	private void nameValidator(String name) {
 		isEmpty(name);
 	}
 
-	public static void descriptionValidator(String description) {
+	private void descriptionValidator(String description) {
 		isEmpty(description);
 
 		if(description.length() > 400) {
@@ -80,7 +77,7 @@ public class Author {
 		}
 	}
 
-	public static void isEmpty(String string) {
+	private void isEmpty(String string) {
 		if (string == null) {
 			throw new RuntimeException("Erro de Preenchimento de String");
 		}
