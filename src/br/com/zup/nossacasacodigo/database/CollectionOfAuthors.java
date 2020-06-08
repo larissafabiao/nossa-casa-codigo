@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import br.com.zup.nossacasacodigo.author.Author;
-import br.com.zup.nossacasacodigo.controllers.AuthorsInformarionValidators;
 
 public class CollectionOfAuthors {
 	Map<String, Author> authors =  new HashMap<String, Author>();
@@ -14,8 +13,13 @@ public class CollectionOfAuthors {
 	}
 	
 	public void addNewAuthor(Author newAuthor) {
-		AuthorsInformarionValidators.emailIsUnic(newAuthor.getEmail(), authors);
+		emailIsUnic(newAuthor.getEmail(), authors);
 		authors.put(newAuthor.getEmail(), newAuthor);
 	}
+	
+	public static void emailIsUnic(String email, Map<String, Author> authors) {
+		if(authors.containsKey(email)){
+			throw new RuntimeException("Email já cadastrado");
+		}
+	}
 }
-
