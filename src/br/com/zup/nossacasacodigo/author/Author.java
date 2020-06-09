@@ -1,7 +1,6 @@
 package br.com.zup.nossacasacodigo.author;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -16,13 +15,10 @@ public class Author {
 		nameValidator(name);
 		descriptionValidator(description);
 		
-		LocalDateTime dataTime = getDateTime();
-		dateValidator(dataTime);
-		
 		this.name = name;
 		this.email = email;
 		this.description = description;
-		this.createdAt = dataTime;
+		this.createdAt = LocalDateTime.now();
 	}
 	
 	//Getters
@@ -42,15 +38,6 @@ public class Author {
 		return this.createdAt;
 	}
 	
-	private LocalDateTime getDateTime() {
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-		LocalDateTime date = LocalDateTime.now();
-		
-		if (formatter.format(date) == null) {
-			System.out.println("Data e instante inválidos");
-		}
-		return date;
-	}
 	//Validações
 	private void emailValidator(String email) {
 		isEmpty(email);
@@ -71,10 +58,6 @@ public class Author {
 		if(isEmailValid == false) {
 			throw new IllegalArgumentException();
 		}
-	}
-
-	private void dateValidator(LocalDateTime dataTime) {
-		isEmpty(dataTime.toString());
 	}
 
 	private void nameValidator(String name) {
