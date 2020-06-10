@@ -40,7 +40,7 @@ public class Author {
 	
 	//Validações
 	private void emailValidator(String email) {
-		isEmpty(email);
+		isEmpty(email, "email");
 
 		boolean isEmailValid = false; 
 		if (email != null && email.length() > 0) {
@@ -56,33 +56,33 @@ public class Author {
 		}
 		
 		if(isEmailValid == false) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("Email com formato inválido");
 		}
 	}
 
 	private void nameValidator(String name) {
-		isEmpty(name);
+		isEmpty(name, "nome");
 	}
 
 	private void descriptionValidator(String description) {
-		isEmpty(description);
+		isEmpty(description, "descrição");
 
 		if(description.length() > 400) {
 			throw new IllegalArgumentException();
 		}
 	}
 
-	private void isEmpty(String string) {
+	private void isEmpty(String string, String paramether) {
 		if (string == null) {
-			throw new RuntimeException("Erro de Preenchimento de String");
+			throw new IllegalArgumentException(paramether + " não pode ser nula");
 		}
 		//Verificar se a String está vazia
 		if (string.isEmpty()) {
-			throw new RuntimeException("Erro de Preenchimento de String");
+			throw new IllegalArgumentException(paramether + " não pode ser vazia");
 		}
 		//Verificar se a String não possui algum caractere válido
 		if (string.trim().isEmpty()) {
-			throw new RuntimeException("Erro de Preenchimento de String");
+			throw new IllegalArgumentException(paramether + " não precisa possuir caracteres válidos");
 		}
 	}
 }

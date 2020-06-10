@@ -1,10 +1,9 @@
-package br.com.zup.nossacasacodigo.test;
+package br.com.zup.nossacasacodigo.database;
 
 import org.junit.Assert;
 import org.junit.Test;
 
 import br.com.zup.nossacasacodigo.author.Author;
-import br.com.zup.nossacasacodigo.database.CollectionOfAuthors;
 
 public class AuthorsTest {
 	@Test
