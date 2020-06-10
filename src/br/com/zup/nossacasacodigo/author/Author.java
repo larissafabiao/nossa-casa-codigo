@@ -68,7 +68,7 @@ public class Author {
 		isEmpty(description, "descrição");
 
 		if(description.length() > 400) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("Tamanho da descrição maior do que o permitido");
 		}
 	}
 

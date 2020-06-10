@@ -19,7 +19,7 @@ public class CollectionOfAuthors {
 	
 	private void emailIsUnic(String email, Map<String, Author> authors) {
 		if(authors.containsKey(email)){
-			throw new IllegalStateException();
+			throw new IllegalStateException("Email não já cadastrado");
 		}
 	}
 }
