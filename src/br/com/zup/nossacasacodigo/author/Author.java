@@ -9,35 +9,35 @@ public class Author {
 	private String email;
 	private String description;
 	private LocalDateTime createdAt;
-	
+
 	public Author(String name, String email, String description) {		
 		emailValidator(email);
 		nameValidator(name);
 		descriptionValidator(description);
-		
+
 		this.name = name;
 		this.email = email;
 		this.description = description;
 		this.createdAt = LocalDateTime.now();
 	}
-	
+
 	//Getters
 	public String getEmail() {
 		return this.email;
 	}
-	
+
 	public String getName() {
 		return this.name;
 	}
-	
+
 	public String getDescription() {
 		return this.description;
 	}
-	
+
 	public LocalDateTime getCreatedAt() {
 		return this.createdAt;
 	}
-	
+
 	//Validações
 	private void emailValidator(String email) {
 		isEmpty(email, "email");
@@ -54,7 +54,7 @@ public class Author {
 				isEmailValid = true;
 			}
 		}
-		
+
 		if(isEmailValid == false) {
 			throw new IllegalArgumentException("Email com formato inválido");
 		}
@@ -76,7 +76,6 @@ public class Author {
 		if (string == null) {
 			throw new IllegalArgumentException(paramether + " não pode ser nula");
 		}
-		//Verificar se a String está vazia
 		if (string.isEmpty()) {
 			throw new IllegalArgumentException(paramether + " não pode ser vazia");
 		}

@@ -4,7 +4,9 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 
-public class AuthorTest {
+import junit.framework.TestCase;
+
+public class AuthorTest extends TestCase{
 	@Test
 	public void testIncludingNewAuthorReturningAValidAuthor() {
 		String name = "X Æ A-12";
@@ -20,7 +22,7 @@ public class AuthorTest {
 	}
 	
 	@Test
-	public void includeANewAuthorWithAEmptyNameReturingAnException() {
+	public void testIncludeANewAuthorWithAEmptyNameReturingAnException() {
 		String name = "";
 		String email = "larissafabiao@gmail.com";
 		//texto de exemplo com exatamente 400 caracteres
