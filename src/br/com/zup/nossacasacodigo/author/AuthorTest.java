@@ -4,9 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 
-import junit.framework.TestCase;
-
-public class AuthorTest extends TestCase{
+public class AuthorTest{
 	@Test
 	public void testIncludingNewAuthorReturningAValidAuthor() {
 		String name = "X Æ A-12";
