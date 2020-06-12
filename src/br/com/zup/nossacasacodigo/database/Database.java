@@ -23,21 +23,14 @@ public class Database {
 	}
 	
 	private void emailIsUnic(String email) {
-		if(this.authors.containsKey(email)){
+		if(authors.containsKey(email)){
 			throw new IllegalStateException("Email não já cadastrado");
 		}
 	}
 	
 	private void categoryIsUnic(String categoryName) {
-		if(this.authors.containsKey(categoryName)){
+		if(authors.containsKey(categoryName)){
 			throw new IllegalStateException("Categoria não já cadastrada");
 		}
-	}
-	
-	public static void main(String Args) {
-		Database primeira = new Database();
-		Category newCategory = new Category("Terror");
-		Map<String, Category> categorias = primeira.addNewCategory(newCategory);
-		System.out.println(categorias);
 	}
 }

@@ -1,6 +1,5 @@
 package br.com.zup.nossacasacodigo.database;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import org.junit.Assert;
@@ -86,9 +85,7 @@ public class DatabaseTest {
 	
 	@Test
 	public void testeWithOneCategory() {
-		String newCategory = "terror";
 		//Database database = new Database();
-		
 		Category categoryCreted = new Category("terror");
 		
 		Map<String, Category> categories = database.addNewCategory(categoryCreted);
