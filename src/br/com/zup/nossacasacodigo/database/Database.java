@@ -7,8 +7,8 @@ import br.com.zup.nossacasacodigo.author.Author;
 import br.com.zup.nossacasacodigo.category.Category;
 
 public class Database {
-	private static Map<String, Author> authors =  new HashMap<String, Author>();
-	private static Map<String, Category> categories = new HashMap<String, Category>();
+	private Map<String, Author> authors =  new HashMap<String, Author>();
+	private Map<String, Category> categories = new HashMap<String, Category>();
 	
 	public Map<String, Author> addNewAuthor(Author newAuthor) {
 		emailIsUnic(newAuthor.getEmail());
@@ -29,7 +29,7 @@ public class Database {
 	}
 	
 	private void categoryIsUnic(String categoryName) {
-		if(authors.containsKey(categoryName)){
+		if(categories.containsKey(categoryName)){
 			throw new IllegalStateException("Categoria não já cadastrada");
 		}
 	}
