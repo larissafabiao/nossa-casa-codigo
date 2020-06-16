@@ -24,13 +24,13 @@ public class Database {
 	
 	private void emailIsUnic(String email) {
 		if(authors.containsKey(email)){
-			throw new IllegalStateException("Email não já cadastrado");
+			throw new IllegalStateException("Email já cadastrado");
 		}
 	}
 	
 	private void categoryIsUnic(String categoryName) {
 		if(categories.containsKey(categoryName)){
-			throw new IllegalStateException("Categoria não já cadastrada");
+			throw new IllegalStateException("Categoria já cadastrada");
 		}
 	}
 }
