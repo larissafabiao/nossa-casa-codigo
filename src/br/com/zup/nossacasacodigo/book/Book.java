@@ -1,6 +1,7 @@
 package br.com.zup.nossacasacodigo.book;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 import br.com.zup.nossacasacodigo.category.Category;
 
@@ -15,62 +16,60 @@ public class Book {
 	private Category category;
 	
 	public Book (String title, String synopsis, String summary, Double price, int pages, String isbn, Category category, LocalDate publicationDate) {
-		titleValidator(title);
-		summaryValidator(synopsis);
-		priceValidator(price);
-		pagesValidator(pages);
-		isbnValidator(isbn);
-		publicationDateValidator(publicationDate);
-		categoryValidator(category);
-		
-		this.title = title.toUpperCase();
-		this.synopsis = synopsis;
-		this.price = price;
-		this.pages = pages;
-		this.isbn = isbn;
-		this.publicationDate = publicationDate;
-		this.category = category;
+
+		this.title = titleValidator(title);
+		this.synopsis = summaryValidator(synopsis);;
+		this.price = priceValidator(price);
+		this.pages = pagesValidator(pages);
+		this.isbn = isbnValidator(isbn);
+		this.publicationDate = publicationDateValidator(publicationDate);
+		this.category = categoryValidator(category);
 		
 	}
 	
-	private void titleValidator(String title) {
+	private String titleValidator(String title) {
 		isEmpty(title, "Título");
+		return title.toUpperCase();
 	}
 	
-	private void summaryValidator(String summary) {
+	private String summaryValidator(String summary) {
 		isEmpty(summary, "Sumário");
 		if (summary.length() > 500) {
 			throw new IllegalArgumentException("Tamanho da descrição maior do que o permitido");
 		}
+		return summary;
 	}
 	
-	private void priceValidator(Double price) {
+	private Double priceValidator(Double price) {
 		if(price < 20.0) {
 			throw new IllegalArgumentException("preço menor do que 20 reais não permitido");
 		}
+		return price;
 	}
 	
-	private void pagesValidator(int pages) {
+	private int pagesValidator(int pages) {
 		if (pages < 100) {
 			throw new IllegalArgumentException("o mínimo de páginas é 100");
 		}
+		return pages;
 	}
 	
-	private void isbnValidator(String ibsn) {
-		isEmpty(ibsn, "ibsn");
+	private String isbnValidator(String isbn) {
+		isEmpty(isbn, "ibsn");
+		return isbn;
 	}
 	
-	private void publicationDateValidator(LocalDate publicationDate) {
+	private LocalDate publicationDateValidator(LocalDate publicationDate) {
 		LocalDate today = LocalDate.now();
 		if (publicationDate.isBefore(today)) {
 			throw new IllegalArgumentException("a data de publicação deve ser no futuro");
 		}
+		return publicationDate;
 	}
 	
-	public void categoryValidator(Category category) {
-		if (category == null) {
-			throw new IllegalArgumentException("a categoria não pode ser nula");
-		}
+	public Category categoryValidator(Category category) {
+		Objects.requireNonNull(category, "A categoria não pode ser nula");
+		return category;
 	}
 
 	private void isEmpty(String string, String paramether) {

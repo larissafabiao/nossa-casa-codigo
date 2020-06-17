@@ -3,7 +3,7 @@ package br.com.zup.nossacasacodigo.book;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CollectionOfBooks {
+public class RepositoryOfBooks {
 	private Map<String, Book> books = new HashMap<String, Book>();
 	
 	public Map<String, Book> addBookInDatabase(Book book) {
@@ -12,7 +12,7 @@ public class CollectionOfBooks {
 		
 		return books;
 	}
-
+	
 	private void isbnIsUnic(String isbn) {
 		if(books.containsKey(isbn)) {
 			throw new IllegalStateException("Isbn já cadastrado");

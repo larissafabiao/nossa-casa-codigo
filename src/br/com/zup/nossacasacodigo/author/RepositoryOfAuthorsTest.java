@@ -1,18 +1,13 @@
-package br.com.zup.nossacasacodigo.database;
+package br.com.zup.nossacasacodigo.author;
 
 import java.util.Map;
 
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 
-import br.com.zup.nossacasacodigo.author.Author;
-import br.com.zup.nossacasacodigo.category.Category;
+public class RepositoryOfAuthorsTest {
 
-public class DatabaseTest {
-	//private Database database;
-	
 	@Test
 	public void testWithOneAutor() {
 		String name = "Larissa Fabião da Fonseca";
@@ -20,7 +15,7 @@ public class DatabaseTest {
 		//texto de exemplo com exatamente 400 caracteres
 		String description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin et placerat purus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque vulputate libero tortor. Fusce arcu felis, rhoncus eget est in, suscipit venenatis orci. Vestibulum eget feugiat justo. Morbi sit amet felis finibus, imperdiet metus eget, pellentesque risus. Nulla at porttitor turpis.";
 
-		Database database = new Database();
+		RepositoryOfAuthors database = new RepositoryOfAuthors();
 		
 		Author newAuthorOne = new Author(name, email, description);
 		
@@ -43,7 +38,7 @@ public class DatabaseTest {
 		//texto de exemplo com menos de 400 caracteres
 		String descriptionTwo = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque vulputate libero tortor. Fusce arcu felis, rhoncus eget est in, suscipit venenatis orci.  Nulla at porttitor turpis.";
 		
-		Database database = new Database();
+		RepositoryOfAuthors database = new RepositoryOfAuthors();
 		
 		Author newAuthorOne = new Author(name, email, description);
 		Author newAuthorTwo = new Author(nameTwo, emailTwo, descriptionTwo);
@@ -69,7 +64,7 @@ public class DatabaseTest {
 		//texto de exemplo com menos de 400 caracteres
 		String descriptionTwo = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque vulputate libero tortor. Fusce arcu felis, rhoncus eget est in, suscipit venenatis orci.  Nulla at porttitor turpis.";
 		
-		Database database = new Database();
+		RepositoryOfAuthors database = new RepositoryOfAuthors();
 		
 		Author newAuthorOne = new Author(name, email, description);
 		Author newAuthorTwo = new Author(nameTwo, emailTwo, descriptionTwo);
@@ -77,14 +72,4 @@ public class DatabaseTest {
 		database.addNewAuthor(newAuthorOne);
 		Assertions.assertThrows(IllegalStateException.class, () -> database.addNewAuthor(newAuthorTwo));
 	}
-	
-	@Test
-	public void testeWithOneCategory() {
-		Database database = new Database();
-		Category categoryCreted = new Category("terror");
-		
-		Map<String, Category> categories = database.addNewCategory(categoryCreted);
-		Assert.assertEquals(categories.size(), 1);
-	}
 }
-

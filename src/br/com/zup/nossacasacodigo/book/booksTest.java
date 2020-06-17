@@ -91,6 +91,6 @@ public class booksTest {
 		LocalDate publicationDate = LocalDate.of(2020,8,16);
 		Category category = null;
 		
-		Assert.assertThrows(IllegalArgumentException.class, () -> new Book(title, synopsis, summary, price, pages, isbn, category, publicationDate));
+		Assert.assertThrows(NullPointerException.class, () -> new Book(title, synopsis, summary, price, pages, isbn, category, publicationDate));
 	}
 }

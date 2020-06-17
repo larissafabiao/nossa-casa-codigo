@@ -21,7 +21,7 @@ public class CollectionOfBooksTest {
 		Category category = new Category("clássico moderno");
 		
 		Book oPequenoPrincipe = new Book(title, synopsis, summary, price, pages, isbn, category, publicationDate);
-		CollectionOfBooks books = new CollectionOfBooks();
+		RepositoryOfBooks books = new RepositoryOfBooks();
 		Map<String, Book> bookList = books.addBookInDatabase(oPequenoPrincipe);
 		
 		Assert.assertTrue(bookList.containsKey(isbn));
@@ -49,7 +49,7 @@ public class CollectionOfBooksTest {
 		
 		Book oPequenoPrincipe = new Book(title, synopsis, summary, price, pages, isbn, category, publicationDate);
 		Book neuromancer = new Book(title2, synopsis2, summary2, price2, pages2, isbn2, category2, publicationDate2);
-		CollectionOfBooks books = new CollectionOfBooks();
+		RepositoryOfBooks books = new RepositoryOfBooks();
 		books.addBookInDatabase(oPequenoPrincipe);
 		Map<String, Book> bookList = books.addBookInDatabase(neuromancer);
 		Assert.assertEquals(bookList.size(), 2);
@@ -77,7 +77,7 @@ public class CollectionOfBooksTest {
 		
 		Book oPequenoPrincipe = new Book(title, synopsis, summary, price, pages, isbn, category, publicationDate);
 		Book neuromancer = new Book(title2, synopsis2, summary2, price2, pages2, isbn2, category2, publicationDate2);
-		CollectionOfBooks books = new CollectionOfBooks();
+		RepositoryOfBooks books = new RepositoryOfBooks();
 		books.addBookInDatabase(oPequenoPrincipe);
 		Assert.assertThrows(IllegalStateException.class,() -> books.addBookInDatabase(neuromancer));
 	}
