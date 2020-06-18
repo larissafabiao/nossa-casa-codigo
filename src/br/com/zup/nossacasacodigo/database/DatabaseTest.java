@@ -1,5 +1,6 @@
 package br.com.zup.nossacasacodigo.database;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Map;
 
@@ -82,7 +83,7 @@ public class DatabaseTest {
 		String title = "O pequeno Principe";
 		String synopsis = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas congue sollicitudin fermentum. Morbi maximus urna sed aliquet condimentum. Suspendisse porta aliquam lacus. Integer faucibus hendrerit sapien. Duis quis efficitur sapien, in sollicitudin sapien. Nunc luctus sit amet odio eget euismod. Maecenas quis interdum nisl. Nullam lectus augue, vestibulum quis nisi nec, sollicitudin mollis magna. Donec faucibus rhoncus lorem, tincidunt pulvinar augue vulputate nec. Pellentesque ornare morbi.";
 		String summary = "It's very easy to make some words **bold** and other words *italic* with Markdown.";
-		Double price = 25.0;
+		BigDecimal price = new BigDecimal("25.0");
 		int pages = 120;
 		String isbn = "Livro1";
 		LocalDate publicationDate = LocalDate.of(2020,8,16);
@@ -100,7 +101,7 @@ public class DatabaseTest {
 		String title = "O pequeno Principe";
 		String synopsis = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas congue sollicitudin fermentum. Morbi maximus urna sed aliquet condimentum. Suspendisse porta aliquam lacus. Integer faucibus hendrerit sapien. Duis quis efficitur sapien, in sollicitudin sapien. Nunc luctus sit amet odio eget euismod. Maecenas quis interdum nisl. Nullam lectus augue, vestibulum quis nisi nec, sollicitudin mollis magna. Donec faucibus rhoncus lorem, tincidunt pulvinar augue vulputate nec. Pellentesque ornare morbi.";
 		String summary = "It's very easy to make some words **bold** and other words *italic* with Markdown.";
-		Double price = 25.0;
+		BigDecimal price = new BigDecimal("25.0");
 		int pages = 120;
 		String isbn = "Livro1";
 		LocalDate publicationDate = LocalDate.of(2020,8,16);
@@ -109,7 +110,7 @@ public class DatabaseTest {
 		String title2 = "Neuromancer";
 		String synopsis2 = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas congue sollicitudin fermentum. Morbi maximus urna sed aliquet condimentum. Suspendisse porta aliquam lacus. Integer faucibus hendrerit sapien. Duis quis efficitur sapien, in sollicitudin sapien. Nunc luctus sit amet odio eget euismod. Maecenas quis interdum nisl. Nullam lectus augue, vestibulum quis nisi nec, sollicitudin mollis magna. Donec faucibus rhoncus lorem, tincidunt pulvinar augue vulputate nec. Pellentesque ornare morbi.";
 		String summary2 = "It's very easy to make some words **bold** and other words *italic* with Markdown.";
-		Double price2 = 30.0;
+		BigDecimal price2 = new BigDecimal("30.0");
 		int pages2 = 300;
 		String isbn2 = "Livro2";
 		LocalDate publicationDate2 = LocalDate.of(2020,8,16);
@@ -128,7 +129,7 @@ public class DatabaseTest {
 		String title = "O pequeno Principe";
 		String synopsis = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas congue sollicitudin fermentum. Morbi maximus urna sed aliquet condimentum. Suspendisse porta aliquam lacus. Integer faucibus hendrerit sapien. Duis quis efficitur sapien, in sollicitudin sapien. Nunc luctus sit amet odio eget euismod. Maecenas quis interdum nisl. Nullam lectus augue, vestibulum quis nisi nec, sollicitudin mollis magna. Donec faucibus rhoncus lorem, tincidunt pulvinar augue vulputate nec. Pellentesque ornare morbi.";
 		String summary = "It's very easy to make some words **bold** and other words *italic* with Markdown.";
-		Double price = 25.0;
+		BigDecimal price = new BigDecimal("25.0");
 		int pages = 120;
 		String isbn = "Livro1";
 		LocalDate publicationDate = LocalDate.of(2020,8,16);
@@ -137,7 +138,7 @@ public class DatabaseTest {
 		String title2 = "Neuromancer";
 		String synopsis2 = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas congue sollicitudin fermentum. Morbi maximus urna sed aliquet condimentum. Suspendisse porta aliquam lacus. Integer faucibus hendrerit sapien. Duis quis efficitur sapien, in sollicitudin sapien. Nunc luctus sit amet odio eget euismod. Maecenas quis interdum nisl. Nullam lectus augue, vestibulum quis nisi nec, sollicitudin mollis magna. Donec faucibus rhoncus lorem, tincidunt pulvinar augue vulputate nec. Pellentesque ornare morbi.";
 		String summary2 = "It's very easy to make some words **bold** and other words *italic* with Markdown.";
-		Double price2 = 30.0;
+		BigDecimal price2 = new BigDecimal("30.0");
 		int pages2 = 300;
 		String isbn2 = "Livro1";
 		LocalDate publicationDate2 = LocalDate.of(2020,8,16);

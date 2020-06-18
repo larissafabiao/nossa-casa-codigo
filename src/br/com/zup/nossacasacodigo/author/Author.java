@@ -12,8 +12,6 @@ public class Author {
 	private String description;
 	private LocalDateTime createdAt;
 	
-	IsEmpty verify = new IsEmpty();
-
 	public Author(String name, String email, String description) {		
 		emailValidator(email);
 		nameValidator(name);
@@ -44,7 +42,7 @@ public class Author {
 
 	//Validações
 	private void emailValidator(String email) {
-		verify.isEmpty(email, "email");
+		IsEmpty.check(email, "email");
 
 		boolean isEmailValid = false; 
 		if (email != null && email.length() > 0) {
@@ -65,11 +63,11 @@ public class Author {
 	}
 
 	private void nameValidator(String name) {
-		verify.isEmpty(name, "nome");
+		IsEmpty.check(name, "nome");
 	}
 
 	private void descriptionValidator(String description) {
-		verify.isEmpty(description, "descrição");
+		IsEmpty.check(description, "descrição");
 
 		if(description.length() > 400) {
 			throw new IllegalArgumentException("Tamanho da descrição maior do que o permitido");

@@ -6,8 +6,7 @@ public class Category {
 	private String name;
 	
 	public Category(String name) {
-		IsEmpty verify = new IsEmpty();
-		verify.isEmpty(name, "nome");
+		IsEmpty.check(name, "nome");
 		this.name = name.toUpperCase();
 	}
 

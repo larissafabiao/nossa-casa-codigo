@@ -1,5 +1,6 @@
 package br.com.zup.nossacasacodigo.book;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -10,15 +11,13 @@ public class Book {
 	private String title;
 	private String synopsis;
 	private String summary;
-	private Double price;
+	private BigDecimal price;
 	private int pages;
 	private String isbn;
 	private LocalDate publicationDate;
 	private Category category;
 	
-	IsEmpty verify = new IsEmpty();
-
-	public Book (String title, String synopsis, String summary, Double price, int pages, String isbn, Category category, LocalDate publicationDate) {
+	public Book (String title, String synopsis, String summary, BigDecimal price, int pages, String isbn, Category category, LocalDate publicationDate) {
 
 		this.title = titleValidator(title);
 		this.synopsis = summaryValidator(synopsis);;
@@ -26,25 +25,25 @@ public class Book {
 		this.pages = pagesValidator(pages);
 		this.isbn = isbnValidator(isbn);
 		this.publicationDate = publicationDateValidator(publicationDate);
-		this.category = categoryValidator(category);
+		this.category = Objects.requireNonNull(category, "A categoria não pode ser nula");
 		
 	}
 	
 	private String titleValidator(String title) {
-		verify.isEmpty(title, "Título");
+		IsEmpty.check(title, "Título");
 		return title.toUpperCase();
 	}
 	
 	private String summaryValidator(String summary) {
-		verify.isEmpty(summary, "Sumário");
+		IsEmpty.check(summary, "Sumário");
 		if (summary.length() > 500) {
 			throw new IllegalArgumentException("Tamanho da descrição maior do que o permitido");
 		}
 		return summary;
 	}
 	
-	private Double priceValidator(Double price) {
-		if(price < 20.0) {
+	private BigDecimal priceValidator(BigDecimal price) {
+		if(price.doubleValue() < 20.0) {
 			throw new IllegalArgumentException("preço menor do que 20 reais não permitido");
 		}
 		return price;
@@ -58,7 +57,7 @@ public class Book {
 	}
 	
 	private String isbnValidator(String isbn) {
-		verify.isEmpty(isbn, "ibsn");
+		IsEmpty.check(isbn, "ibsn");
 		return isbn;
 	}
 	
@@ -69,13 +68,12 @@ public class Book {
 		}
 		return publicationDate;
 	}
-	
-	public Category categoryValidator(Category category) {
-		Objects.requireNonNull(category, "A categoria não pode ser nula");
-		return category;
-	}
 
 	public String getIsbn() {
 		return isbn;
+	}
+	
+	public static void main(String args) {
+		System.out.println(0.1+0.2);
 	}
 }
