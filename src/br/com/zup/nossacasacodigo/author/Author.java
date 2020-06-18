@@ -4,11 +4,15 @@ import java.time.LocalDateTime;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import br.com.zup.nossacasacodigo.auxiliars.IsEmpty;
+
 public class Author {
 	private String name;
 	private String email;
 	private String description;
 	private LocalDateTime createdAt;
+	
+	IsEmpty verify = new IsEmpty();
 
 	public Author(String name, String email, String description) {		
 		emailValidator(email);
@@ -40,7 +44,7 @@ public class Author {
 
 	//Validações
 	private void emailValidator(String email) {
-		isEmpty(email, "email");
+		verify.isEmpty(email, "email");
 
 		boolean isEmailValid = false; 
 		if (email != null && email.length() > 0) {
@@ -61,27 +65,14 @@ public class Author {
 	}
 
 	private void nameValidator(String name) {
-		isEmpty(name, "nome");
+		verify.isEmpty(name, "nome");
 	}
 
 	private void descriptionValidator(String description) {
-		isEmpty(description, "descrição");
+		verify.isEmpty(description, "descrição");
 
 		if(description.length() > 400) {
 			throw new IllegalArgumentException("Tamanho da descrição maior do que o permitido");
-		}
-	}
-
-	private void isEmpty(String string, String paramether) {
-		if (string == null) {
-			throw new IllegalArgumentException(paramether + " não pode ser nula");
-		}
-		if (string.isEmpty()) {
-			throw new IllegalArgumentException(paramether + " não pode ser vazia");
-		}
-		//Verificar se a String não possui algum caractere válido
-		if (string.trim().isEmpty()) {
-			throw new IllegalArgumentException(paramether + " não precisa possuir caracteres válidos");
 		}
 	}
 }

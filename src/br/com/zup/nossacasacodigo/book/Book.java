@@ -3,6 +3,7 @@ package br.com.zup.nossacasacodigo.book;
 import java.time.LocalDate;
 import java.util.Objects;
 
+import br.com.zup.nossacasacodigo.auxiliars.IsEmpty;
 import br.com.zup.nossacasacodigo.category.Category;
 
 public class Book {
@@ -15,6 +16,8 @@ public class Book {
 	private LocalDate publicationDate;
 	private Category category;
 	
+	IsEmpty verify = new IsEmpty();
+
 	public Book (String title, String synopsis, String summary, Double price, int pages, String isbn, Category category, LocalDate publicationDate) {
 
 		this.title = titleValidator(title);
@@ -28,12 +31,12 @@ public class Book {
 	}
 	
 	private String titleValidator(String title) {
-		isEmpty(title, "Título");
+		verify.isEmpty(title, "Título");
 		return title.toUpperCase();
 	}
 	
 	private String summaryValidator(String summary) {
-		isEmpty(summary, "Sumário");
+		verify.isEmpty(summary, "Sumário");
 		if (summary.length() > 500) {
 			throw new IllegalArgumentException("Tamanho da descrição maior do que o permitido");
 		}
@@ -55,7 +58,7 @@ public class Book {
 	}
 	
 	private String isbnValidator(String isbn) {
-		isEmpty(isbn, "ibsn");
+		verify.isEmpty(isbn, "ibsn");
 		return isbn;
 	}
 	
@@ -70,19 +73,6 @@ public class Book {
 	public Category categoryValidator(Category category) {
 		Objects.requireNonNull(category, "A categoria não pode ser nula");
 		return category;
-	}
-
-	private void isEmpty(String string, String paramether) {
-		if (string == null) {
-			throw new IllegalArgumentException(paramether + " não pode ser nula");
-		}
-		if (string.isEmpty()) {
-			throw new IllegalArgumentException(paramether + " não pode ser vazia");
-		}
-		//Verificar se a String não possui algum caractere válido
-		if (string.trim().isEmpty()) {
-			throw new IllegalArgumentException(paramether + " não precisa possuir caracteres válidos");
-		}
 	}
 
 	public String getIsbn() {
