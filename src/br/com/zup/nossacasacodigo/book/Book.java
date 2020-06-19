@@ -19,19 +19,14 @@ public class Book {
 	
 	public Book (String title, String synopsis, String summary, BigDecimal price, int pages, String isbn, Category category, LocalDate publicationDate) {
 
-		this.title = titleValidator(title);
+		this.title = IsEmpty.check(title, "Título").toUpperCase();
 		this.synopsis = summaryValidator(synopsis);;
 		this.price = priceValidator(price);
 		this.pages = pagesValidator(pages);
-		this.isbn = isbnValidator(isbn);
+		this.isbn = IsEmpty.check(isbn, "ibsn");;
 		this.publicationDate = publicationDateValidator(publicationDate);
 		this.category = Objects.requireNonNull(category, "A categoria não pode ser nula");
 		
-	}
-	
-	private String titleValidator(String title) {
-		IsEmpty.check(title, "Título");
-		return title.toUpperCase();
 	}
 	
 	private String summaryValidator(String summary) {
@@ -56,11 +51,6 @@ public class Book {
 		return pages;
 	}
 	
-	private String isbnValidator(String isbn) {
-		IsEmpty.check(isbn, "ibsn");
-		return isbn;
-	}
-	
 	private LocalDate publicationDateValidator(LocalDate publicationDate) {
 		LocalDate today = LocalDate.now();
 		if (publicationDate.isBefore(today)) {
@@ -71,9 +61,5 @@ public class Book {
 
 	public String getIsbn() {
 		return isbn;
-	}
-	
-	public static void main(String args) {
-		System.out.println(0.1+0.2);
 	}
 }

@@ -13,10 +13,6 @@ public class AuthorTest{
 		String description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin et placerat purus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque vulputate libero tortor. Fusce arcu felis, rhoncus eget est in, suscipit venenatis orci. Vestibulum eget feugiat justo. Morbi sit amet felis finibus, imperdiet metus eget, pellentesque risus. Nulla at porttitor turpis.";
 		
 		Author newAuthor = new Author(name, email, description);
-				
-		Assert.assertEquals( newAuthor.getName(), name);
-		Assert.assertEquals(newAuthor.getEmail(), email);
-		Assert.assertEquals(newAuthor.getDescription(), description);
 	}
 	
 	@Test
@@ -36,7 +32,7 @@ public class AuthorTest{
 		//texto de exemplo com exatamente 400 caracteres
 		String description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin et placerat purus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque vulputate libero tortor. Fusce arcu felis, rhoncus eget est in, suscipit venenatis orci. Vestibulum eget feugiat justo. Morbi sit amet felis finibus, imperdiet metus eget, pellentesque risus. Nulla at porttitor turpis.";
 		
-		Assert.assertThrows(IllegalArgumentException.class, () -> new Author(name, email, description));
+		Assert.assertThrows(NullPointerException.class, () -> new Author(name, email, description));
 	}
 	
 	@Test
@@ -56,7 +52,7 @@ public class AuthorTest{
 		//texto de exemplo com exatamente 400 caracteres
 		String description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin et placerat purus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque vulputate libero tortor. Fusce arcu felis, rhoncus eget est in, suscipit venenatis orci. Vestibulum eget feugiat justo. Morbi sit amet felis finibus, imperdiet metus eget, pellentesque risus. Nulla at porttitor turpis.";
 		
-		Assert.assertThrows(IllegalArgumentException.class, () -> new Author(name, email, description));
+		Assert.assertThrows(NullPointerException.class, () -> new Author(name, email, description));
 	}
 	
 	@Test
@@ -72,7 +68,7 @@ public class AuthorTest{
 		String name = "Larissa Fabião da Fonseca";
 		String email = null;
 		String description = null;
-		Assert.assertThrows(IllegalArgumentException.class, () -> new Author(name, email, description));
+		Assert.assertThrows(NullPointerException.class, () -> new Author(name, email, description));
 	}
 }
 

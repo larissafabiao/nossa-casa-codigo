@@ -12,42 +12,28 @@ public class Database {
 	private Map<String, Book> books = new HashMap<String, Book>();
 	private Map<String, Category> categories = new HashMap<String, Category>();
 	
-
-	
 	public Map<String, Author> addNewAuthor(Author newAuthor) {
-		emailIsUnic(newAuthor.getEmail());
-		authors.put(newAuthor.getEmail(), newAuthor);
+		checkIfIsUnic(newAuthor.getKey(), authors);
+		authors.put(newAuthor.getKey(), newAuthor);
 		return authors;
-	}
-	
-	private void emailIsUnic(String email) {
-		if(authors.containsKey(email)){
-			throw new IllegalStateException("Email já cadastrado");
-		}
 	}
 		
 	public Map<String, Book> addBookInDatabase(Book book) {
-		isbnIsUnic(book.getIsbn());
+		checkIfIsUnic(book.getIsbn(), books);
 		books.put(book.getIsbn(), book);
 		
 		return books;
 	}
-	
-	private void isbnIsUnic(String isbn) {
-		if(books.containsKey(isbn)) {
-			throw new IllegalStateException("Isbn já cadastrado");
-		}
-	}
 
 	public Map<String, Category> addNewCategory(Category category) {
-		categoryIsUnic(category.getName());
-		categories.put(category.getName(), category); 
+		checkIfIsUnic(category.getKey(), categories);
+		categories.put(category.getKey(), category); 
 		return categories;
 	}
 	
-	private void categoryIsUnic(String categoryName) {
-		if(categories.containsKey(categoryName)){
-			throw new IllegalStateException("Categoria já cadastrada");
+	private <T> void checkIfIsUnic(String key, Map<String, T> database) {
+		if(database.containsKey(key)) {
+			throw new IllegalStateException("Já cadastrado");
 		}
 	}
 }

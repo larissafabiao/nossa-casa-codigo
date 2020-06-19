@@ -13,35 +13,19 @@ public class Author {
 	private LocalDateTime createdAt;
 	
 	public Author(String name, String email, String description) {		
-		emailValidator(email);
-		nameValidator(name);
-		descriptionValidator(description);
-
-		this.name = name;
-		this.email = email;
-		this.description = description;
+		this.name = IsEmpty.check(name, "nome");
+		this.email = emailValidator(email);
+		this.description = descriptionValidator(description);;
 		this.createdAt = LocalDateTime.now();
 	}
 
 	//Getters
-	public String getEmail() {
+	public String getKey() {
 		return this.email;
 	}
-
-	public String getName() {
-		return this.name;
-	}
-
-	public String getDescription() {
-		return this.description;
-	}
-
-	public LocalDateTime getCreatedAt() {
-		return this.createdAt;
-	}
-
+	
 	//Validações
-	private void emailValidator(String email) {
+	private String emailValidator(String email) {
 		IsEmpty.check(email, "email");
 
 		boolean isEmailValid = false; 
@@ -60,17 +44,15 @@ public class Author {
 		if(isEmailValid == false) {
 			throw new IllegalArgumentException("Email com formato inválido");
 		}
+		return email;
 	}
 
-	private void nameValidator(String name) {
-		IsEmpty.check(name, "nome");
-	}
-
-	private void descriptionValidator(String description) {
+	private String descriptionValidator(String description) {
 		IsEmpty.check(description, "descrição");
 
 		if(description.length() > 400) {
 			throw new IllegalArgumentException("Tamanho da descrição maior do que o permitido");
 		}
+		return description;
 	}
 }

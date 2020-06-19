@@ -6,7 +6,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import br.com.zup.nossacasacodigo.category.Category;
 
-public class booksTest {
+public class BookTest {
 	@Test
 	public void creationOfABookWithValidInformatiosReturningASucessInclusion() {
 		String title = "O pequeno Principe";

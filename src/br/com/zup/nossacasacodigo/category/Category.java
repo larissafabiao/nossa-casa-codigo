@@ -6,11 +6,10 @@ public class Category {
 	private String name;
 	
 	public Category(String name) {
-		IsEmpty.check(name, "nome");
-		this.name = name.toUpperCase();
+		this.name = IsEmpty.check(name, "nome").toUpperCase();
 	}
 
-	public String getName() {
+	public String getKey() {
 		return name;
 	}
 

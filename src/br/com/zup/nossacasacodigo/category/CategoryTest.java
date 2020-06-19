@@ -5,18 +5,17 @@ import org.junit.Test;
 
 public class CategoryTest {
 	@Test
-	public void TestingTheCreationOfAInstanceOfCategoryWithValidInformations () {
+	public void testingTheCreationOfAInstanceOfCategoryWithValidInformations () {
 		Category category = new Category("Terror");
-		Assert.assertEquals("Terror".toUpperCase(), category.getName());
 	}
 	
 	@Test
-	public void TestingTheCreationOfAInstanceOfCategoryWithANullNameReturningNullPointerException () {
+	public void testingTheCreationOfAInstanceOfCategoryWithANullNameReturningNullPointerException () {
 		Assert.assertThrows(NullPointerException.class, () -> new Category(null));
 	}
 	
 	@Test
-	public void TestingTheCreationOfAInstanceOfCategoryWithAEmptyNameReturningIllegalArgumentException () {
+	public void testingTheCreationOfAInstanceOfCategoryWithAEmptyNameReturningIllegalArgumentException () {
 		Assert.assertThrows(IllegalArgumentException.class, () -> new Category(""));
 	}
 }
