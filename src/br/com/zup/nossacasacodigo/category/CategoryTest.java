@@ -11,7 +11,7 @@ public class CategoryTest {
 	
 	@Test
 	public void testingTheCreationOfAInstanceOfCategoryWithANullNameReturningNullPointerException () {
-		Assert.assertThrows(NullPointerException.class, () -> new Category(null));
+		Assert.assertThrows(IllegalArgumentException.class, () -> new Category(null));
 	}
 	
 	@Test
