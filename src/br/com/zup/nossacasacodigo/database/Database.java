@@ -17,6 +17,14 @@ public class Database {
 		authors.put(newAuthor.getEmail(), newAuthor);
 		return authors;
 	}
+	
+	public Author searchAuthor(String email) {
+		Author wanted = authors.get(email);
+		if (wanted != null) {
+			return wanted;
+		} 
+		throw new IllegalStateException("Autor não encontrado");
+	}
 		
 	public Map<String, Book> addBookInDatabase(Book book) {
 		checkIfIsUnic(book.getIsbn(), books);

@@ -79,6 +79,44 @@ public class DatabaseTest {
 	}
 	
 	@Test
+	public void searchingForAnAuthorPreviouslyCadastredAndReturningThisAuthor() {
+		String name = "Larissa Fabião da Fonseca";
+		String email = "larissafabiao@gmail.com";
+		//texto de exemplo com exatamente 400 caracteres
+		String description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin et placerat purus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque vulputate libero tortor. Fusce arcu felis, rhoncus eget est in, suscipit venenatis orci. Vestibulum eget feugiat justo. Morbi sit amet felis finibus, imperdiet metus eget, pellentesque risus. Nulla at porttitor turpis.";
+		
+		String nameTwo = "Larissa Fonseca";
+		String emailTwo = "larissao@gmail.com";
+		//texto de exemplo com menos de 400 caracteres
+		String descriptionTwo = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque vulputate libero tortor. Fusce arcu felis, rhoncus eget est in, suscipit venenatis orci.  Nulla at porttitor turpis.";
+		
+		Database database = new Database();
+		
+		Author newAuthorOne = new Author(name, email, description);
+		Author newAuthorTwo = new Author(nameTwo, emailTwo, descriptionTwo);
+		database.addNewAuthor(newAuthorOne);
+		database.addNewAuthor(newAuthorTwo);
+		
+		Assert.assertEquals(newAuthorTwo, database.searchAuthor(emailTwo));
+	}
+	
+	@Test
+	public void searchingForAnAuthorNotCadastredAndReturningAIllegalStateException() {
+		String name = "Larissa Fabião da Fonseca";
+		String email = "larissafabiao@gmail.com";
+		//texto de exemplo com exatamente 400 caracteres
+		String description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin et placerat purus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque vulputate libero tortor. Fusce arcu felis, rhoncus eget est in, suscipit venenatis orci. Vestibulum eget feugiat justo. Morbi sit amet felis finibus, imperdiet metus eget, pellentesque risus. Nulla at porttitor turpis.";
+				
+		Database database = new Database();
+		
+		Author newAuthorOne = new Author(name, email, description);
+		
+		database.addNewAuthor(newAuthorOne);
+		
+		Assert.assertThrows(IllegalStateException.class, () -> database.searchAuthor("larissao@gmail.com"));
+	}
+	
+	@Test
 	public void includingAnBookAndReturningASuccessOperation() {
 		String title = "O pequeno Principe";
 		String synopsis = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas congue sollicitudin fermentum. Morbi maximus urna sed aliquet condimentum. Suspendisse porta aliquam lacus. Integer faucibus hendrerit sapien. Duis quis efficitur sapien, in sollicitudin sapien. Nunc luctus sit amet odio eget euismod. Maecenas quis interdum nisl. Nullam lectus augue, vestibulum quis nisi nec, sollicitudin mollis magna. Donec faucibus rhoncus lorem, tincidunt pulvinar augue vulputate nec. Pellentesque ornare morbi.";
