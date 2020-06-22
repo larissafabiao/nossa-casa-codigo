@@ -4,9 +4,11 @@ import java.util.Objects;
 
 public class IsEmpty {
 	public static String check(String string, String paramether) {
-		Objects.requireNonNull(string, paramether + " não pode ser nula");
+		if(string == null) {
+			throw new IllegalArgumentException(paramether + " não pode ser nula");
+		}
 		if (string.isBlank()) {
-			throw new IllegalArgumentException(paramether + " não precisa possuir caracteres válidos");
+			throw new IllegalArgumentException(paramether + " precisa possuir caracteres válidos");
 		}
 		return string;
 	}

@@ -13,8 +13,8 @@ public class Database {
 	private Map<String, Category> categories = new HashMap<String, Category>();
 	
 	public Map<String, Author> addNewAuthor(Author newAuthor) {
-		checkIfIsUnic(newAuthor.getKey(), authors);
-		authors.put(newAuthor.getKey(), newAuthor);
+		checkIfIsUnic(newAuthor.getEmail(), authors);
+		authors.put(newAuthor.getEmail(), newAuthor);
 		return authors;
 	}
 		
@@ -26,8 +26,8 @@ public class Database {
 	}
 
 	public Map<String, Category> addNewCategory(Category category) {
-		checkIfIsUnic(category.getKey(), categories);
-		categories.put(category.getKey(), category); 
+		checkIfIsUnic(category.getName(), categories);
+		categories.put(category.getName(), category); 
 		return categories;
 	}
 	

@@ -9,7 +9,7 @@ public class Category {
 		this.name = IsEmpty.check(name, "nome").toUpperCase();
 	}
 
-	public String getKey() {
+	public String getName() {
 		return name;
 	}
 

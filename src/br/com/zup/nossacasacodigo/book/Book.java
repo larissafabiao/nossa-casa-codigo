@@ -25,8 +25,12 @@ public class Book {
 		this.pages = pagesValidator(pages);
 		this.isbn = IsEmpty.check(isbn, "ibsn");;
 		this.publicationDate = publicationDateValidator(publicationDate);
-		this.category = Objects.requireNonNull(category, "A categoria não pode ser nula");
+		this.category = categoryValidator(category);
 		
+	}
+	
+	public String getIsbn() {
+		return isbn;
 	}
 	
 	private String summaryValidator(String summary) {
@@ -58,8 +62,11 @@ public class Book {
 		}
 		return publicationDate;
 	}
-
-	public String getIsbn() {
-		return isbn;
+	
+	private Category categoryValidator(Category category) {
+		if (category == null) {
+			throw new IllegalArgumentException("a categoria não pode ser nula");
+		}
+		return category;
 	}
 }

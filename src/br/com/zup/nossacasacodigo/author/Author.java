@@ -20,7 +20,7 @@ public class Author {
 	}
 
 	//Getters
-	public String getKey() {
+	public String getEmail() {
 		return this.email;
 	}
 	
