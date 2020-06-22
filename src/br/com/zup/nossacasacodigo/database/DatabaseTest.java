@@ -191,12 +191,47 @@ public class DatabaseTest {
 	}
 	
 	@Test
-	public void testeWithOneCategory() {
+	public void testeWithOneCategoryWithValidData() {
 		Database database = new Database();
 		Category categoryCreted = new Category("terror");
 		
 		Map<String, Category> categories = database.addNewCategory(categoryCreted);
 		Assert.assertEquals(categories.size(), 1);
 	}
+	
+	@Test
+	public void testeWithTheInsertionOfTwoCatgoriesWithTheSameName() {
+		Database database = new Database();
+		Category categoryOne = new Category("terror");
+		Category categoryTwo = new Category("Terror");
+		
+		database.addNewCategory(categoryOne);
+		
+		Assert.assertThrows(IllegalStateException.class, () -> database.addNewCategory(categoryTwo));
+	}
+	
+	@Test
+	public void insertTwoDifferentCategoriesAndSearchForThenReturningTheCorrectObject() {
+		Database database = new Database();
+		Category categoryOne = new Category("terror");
+		Category categoryTwo = new Category("ficção científica");
+		
+		database.addNewCategory(categoryOne);
+		database.addNewCategory(categoryTwo);
+		
+		Assert.assertEquals(categoryOne, database.searchCategory("Terror"));
+		Assert.assertEquals(categoryTwo, database.searchCategory("ficção científica"));
+	}
+	
+	@Test
+	public void testeToSearchForAnInexistentCategoryReturningAnException() {
+		Database database = new Database();
+		Category categoryOne = new Category("terror");
+		
+		database.addNewCategory(categoryOne);
+		
+		Assert.assertThrows(IllegalStateException.class, () -> database.searchCategory("suspense"));
+	}
+	
 }
 

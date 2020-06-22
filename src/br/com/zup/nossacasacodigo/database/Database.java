@@ -17,14 +17,6 @@ public class Database {
 		authors.put(newAuthor.getEmail(), newAuthor);
 		return authors;
 	}
-	
-	public Author searchAuthor(String email) {
-		Author wanted = authors.get(email);
-		if (wanted != null) {
-			return wanted;
-		} 
-		throw new IllegalStateException("Autor não encontrado");
-	}
 		
 	public Map<String, Book> addBookInDatabase(Book book) {
 		checkIfIsUnic(book.getIsbn(), books);
@@ -43,5 +35,21 @@ public class Database {
 		if(database.containsKey(key)) {
 			throw new IllegalStateException("Já cadastrado");
 		}
+	}
+	
+	public Author searchAuthor(String email) {
+		Author wanted = authors.get(email);
+		if (wanted != null) {
+			return wanted;
+		} 
+		throw new IllegalStateException("Autor não encontrado");
+	}
+	
+	public Category searchCategory(String name) {
+		Category wanted = categories.get(name.toUpperCase());
+		if (wanted != null) {
+			return wanted;
+		} 
+		throw new IllegalStateException("Autor não encontrado");
 	}
 }
