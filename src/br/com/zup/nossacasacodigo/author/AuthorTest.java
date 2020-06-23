@@ -13,10 +13,6 @@ public class AuthorTest{
 		String description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin et placerat purus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque vulputate libero tortor. Fusce arcu felis, rhoncus eget est in, suscipit venenatis orci. Vestibulum eget feugiat justo. Morbi sit amet felis finibus, imperdiet metus eget, pellentesque risus. Nulla at porttitor turpis.";
 		
 		Author newAuthor = new Author(name, email, description);
-				
-		Assert.assertEquals( newAuthor.getName(), name);
-		Assert.assertEquals(newAuthor.getEmail(), email);
-		Assert.assertEquals(newAuthor.getDescription(), description);
 	}
 	
 	@Test

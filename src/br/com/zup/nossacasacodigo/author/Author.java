@@ -4,20 +4,18 @@ import java.time.LocalDateTime;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import br.com.zup.nossacasacodigo.auxiliars.IsEmpty;
+
 public class Author {
 	private String name;
 	private String email;
 	private String description;
 	private LocalDateTime createdAt;
-
+	
 	public Author(String name, String email, String description) {		
-		emailValidator(email);
-		nameValidator(name);
-		descriptionValidator(description);
-
-		this.name = name;
-		this.email = email;
-		this.description = description;
+		this.name = IsEmpty.check(name, "nome");
+		this.email = emailValidator(email);
+		this.description = descriptionValidator(description);;
 		this.createdAt = LocalDateTime.now();
 	}
 
@@ -25,22 +23,10 @@ public class Author {
 	public String getEmail() {
 		return this.email;
 	}
-
-	public String getName() {
-		return this.name;
-	}
-
-	public String getDescription() {
-		return this.description;
-	}
-
-	public LocalDateTime getCreatedAt() {
-		return this.createdAt;
-	}
-
+	
 	//Validações
-	private void emailValidator(String email) {
-		isEmpty(email, "email");
+	private String emailValidator(String email) {
+		IsEmpty.check(email, "email");
 
 		boolean isEmailValid = false; 
 		if (email != null && email.length() > 0) {
@@ -58,30 +44,15 @@ public class Author {
 		if(isEmailValid == false) {
 			throw new IllegalArgumentException("Email com formato inválido");
 		}
+		return email;
 	}
 
-	private void nameValidator(String name) {
-		isEmpty(name, "nome");
-	}
-
-	private void descriptionValidator(String description) {
-		isEmpty(description, "descrição");
+	private String descriptionValidator(String description) {
+		IsEmpty.check(description, "descrição");
 
 		if(description.length() > 400) {
 			throw new IllegalArgumentException("Tamanho da descrição maior do que o permitido");
 		}
-	}
-
-	private void isEmpty(String string, String paramether) {
-		if (string == null) {
-			throw new IllegalArgumentException(paramether + " não pode ser nula");
-		}
-		if (string.isEmpty()) {
-			throw new IllegalArgumentException(paramether + " não pode ser vazia");
-		}
-		//Verificar se a String não possui algum caractere válido
-		if (string.trim().isEmpty()) {
-			throw new IllegalArgumentException(paramether + " não precisa possuir caracteres válidos");
-		}
+		return description;
 	}
 }
