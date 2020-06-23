@@ -127,7 +127,13 @@ public class DatabaseTest {
 		LocalDate publicationDate = LocalDate.of(2020,8,16);
 		Category category = new Category("clássico moderno");
 		
-		Book oPequenoPrincipe = new Book(title, synopsis, summary, price, pages, isbn, category, publicationDate);
+		String name = "Fernando Boaglio";
+		String email = "larissafabiao@gmail.com";
+		String description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin et placerat purus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque vulputate libero tortor. Fusce arcu felis, rhoncus eget est in, suscipit venenatis orci. Vestibulum eget feugiat justo. Morbi sit amet felis finibus, imperdiet metus eget, pellentesque risus. Nulla at porttitor turpis.";
+		
+		Author fernandoBoaglio = new Author(name, email, description);
+		
+		Book oPequenoPrincipe = new Book(title, synopsis, summary, price, pages, isbn, category, publicationDate, fernandoBoaglio);
 		Database database = new Database();
 		Map<String, Book> books = database.addBookInDatabase(oPequenoPrincipe);
 		
@@ -154,8 +160,14 @@ public class DatabaseTest {
 		LocalDate publicationDate2 = LocalDate.of(2020,8,16);
 		Category category2 = new Category("futurista");
 		
-		Book oPequenoPrincipe = new Book(title, synopsis, summary, price, pages, isbn, category, publicationDate);
-		Book neuromancer = new Book(title2, synopsis2, summary2, price2, pages2, isbn2, category2, publicationDate2);
+		String name = "Fernando Boaglio";
+		String email = "larissafabiao@gmail.com";
+		String description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin et placerat purus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque vulputate libero tortor. Fusce arcu felis, rhoncus eget est in, suscipit venenatis orci. Vestibulum eget feugiat justo. Morbi sit amet felis finibus, imperdiet metus eget, pellentesque risus. Nulla at porttitor turpis.";
+		
+		Author fernandoBoaglio = new Author(name, email, description);
+		
+		Book oPequenoPrincipe = new Book(title, synopsis, summary, price, pages, isbn, category, publicationDate, fernandoBoaglio);
+		Book neuromancer = new Book(title2, synopsis2, summary2, price2, pages2, isbn2, category2, publicationDate2, fernandoBoaglio);
 		Database database = new Database();
 		database.addBookInDatabase(oPequenoPrincipe);
 		Map<String, Book> books = database.addBookInDatabase(neuromancer);
@@ -182,8 +194,14 @@ public class DatabaseTest {
 		LocalDate publicationDate2 = LocalDate.of(2020,8,16);
 		Category category2 = new Category("futurista");
 		
-		Book oPequenoPrincipe = new Book(title, synopsis, summary, price, pages, isbn, category, publicationDate);
-		Book neuromancer = new Book(title2, synopsis2, summary2, price2, pages2, isbn2, category2, publicationDate2);
+		String name = "Fernando Boaglio";
+		String email = "larissafabiao@gmail.com";
+		String description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin et placerat purus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque vulputate libero tortor. Fusce arcu felis, rhoncus eget est in, suscipit venenatis orci. Vestibulum eget feugiat justo. Morbi sit amet felis finibus, imperdiet metus eget, pellentesque risus. Nulla at porttitor turpis.";
+		
+		Author fernandoBoaglio = new Author(name, email, description);
+		
+		Book oPequenoPrincipe = new Book(title, synopsis, summary, price, pages, isbn, category, publicationDate, fernandoBoaglio);
+		Book neuromancer = new Book(title2, synopsis2, summary2, price2, pages2, isbn2, category2, publicationDate2, fernandoBoaglio);
 		
 		Database database = new Database();
 		database.addBookInDatabase(oPequenoPrincipe);

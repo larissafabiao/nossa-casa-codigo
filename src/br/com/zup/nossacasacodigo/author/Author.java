@@ -55,4 +55,8 @@ public class Author {
 		}
 		return description;
 	}
+
+	public String getName() {
+		return name;
+	}
 }
