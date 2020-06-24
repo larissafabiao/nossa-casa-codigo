@@ -58,7 +58,7 @@ public class Database {
 		Optional<Book> bookToReturn = Optional.empty();
 
 		for (Book book : books.values()) {
-			if (name.compareToIgnoreCase(book.getTitle()) == 0) {
+			if (name.equalsIgnoreCase(book.getTitle())) {
 				bookToReturn = Optional.ofNullable(book);
 			}
 		}
