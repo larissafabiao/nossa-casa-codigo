@@ -18,7 +18,9 @@ public class Book {
 	private Author author;
 	
 	public Book (String title, String synopsis, String summary, BigDecimal price, int pages, String isbn, Category category, LocalDate publicationDate, Author author) {
-
+		nonNullObjectValidator(category);
+		nonNullObjectValidator(author);
+		
 		this.title = IsEmpty.check(title, "Título").toUpperCase();
 		this.synopsis = synopsisValidator(synopsis);
 		this.summary = summary;
@@ -26,9 +28,8 @@ public class Book {
 		this.pages = pagesValidator(pages);
 		this.isbn = IsEmpty.check(isbn, "ibsn");
 		this.publicationDate = publicationDateValidator(publicationDate);
-		this.category = (Category) categoryValidator(category);
-		this.author = (Author) categoryValidator(author);
-		
+		this.category = category;
+		this.author = author;
 	}
 	
 	private String synopsisValidator(String summary) {
@@ -61,11 +62,10 @@ public class Book {
 		return publicationDate;
 	}
 	
-	private Object categoryValidator(Object obj) {
+	private void nonNullObjectValidator(Object obj) {
 		if (obj == null) {
 			throw new IllegalArgumentException("a categoria não pode ser nula");
 		}
-		return obj;
 	}
 	
 	public String getIsbn() {
@@ -75,17 +75,8 @@ public class Book {
 	public String getTitle() {
 		return title;
 	}
-	
-	
-	public void printBookInfo () {
-		System.out.println(this.title);
-		System.out.println(this.author.getName());
-		System.out.println("R$ " + this.price);
-		System.out.println("Conteúdo: ");
-		System.out.println(this.synopsis);
-		System.out.println("Sumário: ");
-		System.out.println(this.summary);
-		System.out.println(this.pages);
-		System.out.println(this.isbn);
+
+	public BookDetail getBookDetail() {
+		return new BookDetail(this.title, this.synopsis, this.summary, this.price, this.pages, this.isbn, this.author);
 	}
 }

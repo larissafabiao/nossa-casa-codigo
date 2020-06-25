@@ -9,7 +9,6 @@ import br.com.zup.nossacasacodigo.category.Category;
 import br.com.zup.nossacasacodigo.database.Database;
 
 public class ShowABook {
-
 	public static void main(String[] args) {
 		String title = "Spring Boot";
 		String synopsis = "Descrição do livro";
@@ -33,8 +32,8 @@ public class ShowABook {
 		Optional<Book> bookReturned = database.searchBook("Spring Boot");
 		
 		if (bookReturned.isPresent()) {
-			Book book = bookReturned.get();
-			book.printBookInfo();
+			Book bookToPrint = bookReturned.get();
+			bookToPrint.getBookDetail().printBookInfo();
 		} else {
 			System.out.println("Livro não encontrado");
 		}
