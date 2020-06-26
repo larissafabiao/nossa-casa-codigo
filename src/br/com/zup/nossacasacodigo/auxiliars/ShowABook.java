@@ -32,8 +32,16 @@ public class ShowABook {
 		Optional<Book> bookReturned = database.searchBook("Spring Boot");
 		
 		if (bookReturned.isPresent()) {
-			Book bookToPrint = bookReturned.get();
-			bookToPrint.getBookDetail().printBookInfo();
+			Book book = bookReturned.get();
+			System.out.println(book.getTitle());
+			System.out.println(book.getAuthor().getName());
+			System.out.println("R$ " + book.getPrice());
+			System.out.println("Conteúdo: ");
+			System.out.println(book.getSynopsis());
+			System.out.println("Sumário: ");
+			System.out.println(book.getSummary());
+			System.out.println(book.getPages());
+			System.out.println(book.getIsbn());
 		} else {
 			System.out.println("Livro não encontrado");
 		}

@@ -62,10 +62,11 @@ public class Book {
 		return publicationDate;
 	}
 	
-	private void nonNullObjectValidator(Object obj) {
+	private <T> T nonNullObjectValidator(T obj) {
 		if (obj == null) {
 			throw new IllegalArgumentException("a categoria não pode ser nula");
 		}
+		return obj;
 	}
 	
 	public String getIsbn() {
@@ -76,7 +77,24 @@ public class Book {
 		return title;
 	}
 
-	public BookDetail getBookDetail() {
-		return new BookDetail(this.title, this.synopsis, this.summary, this.price, this.pages, this.isbn, this.author);
+	public String getSynopsis() {
+		return synopsis;
 	}
+
+	public String getSummary() {
+		return summary;
+	}
+
+	public BigDecimal getPrice() {
+		return price;
+	}
+
+	public int getPages() {
+		return pages;
+	}
+
+	public Author getAuthor() {
+		return author;
+	}
+	
 }
