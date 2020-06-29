@@ -13,20 +13,20 @@ public class Database {
 	private Map<String, Category> categories = new HashMap<String, Category>();
 	
 	public Map<String, Author> addNewAuthor(Author newAuthor) {
-		CollectionsValidatorsAndGetters.checkIfIsUnic(newAuthor.getEmail(), authors);
+		DatabaseValidators.checkIfIsUnic(newAuthor.getEmail(), authors);
 		authors.put(newAuthor.getEmail().toUpperCase(), newAuthor);
 		return authors;
 	}
 		
 	public Map<String, Book> addBookInDatabase(Book book) {
-		CollectionsValidatorsAndGetters.checkIfIsUnic(book.getTitle(), books);
-		CollectionsValidatorsAndGetters.checkIfIsUnicIsbn(book.getIsbn(), books);
+		DatabaseValidators.checkIfIsUnic(book.getTitle(), books);
+		DatabaseValidators.checkIfIsUnicIsbn(book.getIsbn(), books);
 		books.put(book.getTitle(), book);
 		return books;
 	}
 
 	public Map<String, Category> addNewCategory(Category category) {
-		CollectionsValidatorsAndGetters.checkIfIsUnic(category.getName(), categories);
+		DatabaseValidators.checkIfIsUnic(category.getName(), categories);
 		categories.put(category.getName().toUpperCase(), category); 
 		return categories;
 	}

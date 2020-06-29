@@ -3,7 +3,7 @@ package br.com.zup.nossacasacodigo.database;
 import java.util.Map;
 import br.com.zup.nossacasacodigo.book.Book;
 
-public class CollectionsValidatorsAndGetters {
+public class DatabaseValidators {
 	public static <T> void checkIfIsUnic(String key, Map<String, T> database) {
 		if(database.containsKey(key.toUpperCase())) {
 			throw new IllegalStateException("Já cadastrado");
