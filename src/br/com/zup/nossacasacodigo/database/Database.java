@@ -3,8 +3,6 @@ package br.com.zup.nossacasacodigo.database;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
-import java.util.function.Function;
-
 import br.com.zup.nossacasacodigo.author.Author;
 import br.com.zup.nossacasacodigo.book.Book;
 import br.com.zup.nossacasacodigo.category.Category;
@@ -16,40 +14,33 @@ public class Database {
 	
 	public Map<String, Author> addNewAuthor(Author newAuthor) {
 		CollectionsValidatorsAndGetters.checkIfIsUnic(newAuthor.getEmail(), authors);
-		authors.put(newAuthor.getEmail(), newAuthor);
+		authors.put(newAuthor.getEmail().toUpperCase(), newAuthor);
 		return authors;
 	}
 		
 	public Map<String, Book> addBookInDatabase(Book book) {
 		CollectionsValidatorsAndGetters.checkIfIsUnic(book.getTitle(), books);
-		for (Book bookExistent : books.values()) {
-			if (book.getIsbn().equalsIgnoreCase(bookExistent.getIsbn())) {
-				throw new IllegalStateException("Já cadastrado");
-			}
-		}
+		CollectionsValidatorsAndGetters.checkIfIsUnicIsbn(book.getIsbn(), books);
 		books.put(book.getTitle(), book);
 		return books;
 	}
 
 	public Map<String, Category> addNewCategory(Category category) {
 		CollectionsValidatorsAndGetters.checkIfIsUnic(category.getName(), categories);
-		categories.put(category.getName(), category); 
+		categories.put(category.getName().toUpperCase(), category); 
 		return categories;
 	}
 	
-	public Author searchAuthor(String email) {
-		Author wanted = authors.get(email);
-		if (wanted != null) {
-			return wanted;
+	public <T> T searchAuthorOrCategory(String key, Map<String, T> database) {
+		Optional<T> returned = searchInDatabase(key, database);
+		if (!returned.isPresent()) {
+			throw new IllegalStateException("Não encontrado");
 		} 
-		throw new IllegalStateException("Autor não encontrado");
+		return returned.get();
 	}
 	
-	public Category searchCategory(String name) {
-		Category wanted = categories.get(name.toUpperCase());
-		if (wanted != null) {
-			return wanted;
-		} 
-		throw new IllegalStateException("Autor não encontrado");
+	public <T> Optional<T> searchInDatabase (String value, Map<String, T> database) {
+		T returned = database.get(value.toUpperCase());
+		return Optional.ofNullable(returned);
 	}
 }

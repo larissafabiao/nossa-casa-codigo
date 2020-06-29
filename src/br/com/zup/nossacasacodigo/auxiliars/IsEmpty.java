@@ -1,7 +1,5 @@
 package br.com.zup.nossacasacodigo.auxiliars;
 
-import java.util.Objects;
-
 public class IsEmpty {
 	public static String check(String string, String paramether) {
 		if(string == null) {

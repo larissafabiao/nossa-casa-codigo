@@ -7,7 +7,6 @@ import java.util.Optional;
 import br.com.zup.nossacasacodigo.author.Author;
 import br.com.zup.nossacasacodigo.book.Book;
 import br.com.zup.nossacasacodigo.category.Category;
-import br.com.zup.nossacasacodigo.database.CollectionsValidatorsAndGetters;
 import br.com.zup.nossacasacodigo.database.Database;
 
 public class ShowABook {
@@ -30,7 +29,7 @@ public class ShowABook {
 		Book springBoot = new Book(title, synopsis, summary, price, pages, isbn, category, publicationDate, fernandoBoaglio);
 		Database database = new Database();
 		
-		Optional<Book> bookReturned = CollectionsValidatorsAndGetters.searchBook("Spring Boot", database.addBookInDatabase(springBoot));
+		Optional<Book> bookReturned = database.searchInDatabase("Spring Boot", database.addBookInDatabase(springBoot));
 		
 		//formatação para impressão do valor baseado na locaçização geográfica
 		if (bookReturned.isPresent()) {
