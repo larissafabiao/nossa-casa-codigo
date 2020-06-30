@@ -13,34 +13,36 @@ public class Database {
 	private Map<String, Category> categories = new HashMap<String, Category>();
 	
 	public Map<String, Author> addNewAuthor(Author newAuthor) {
-		DatabaseValidators.checkIfIsUnic(newAuthor.getEmail(), authors);
+		DatabaseAuxiliars.checkIfIsUnic(newAuthor.getEmail(), authors);
 		authors.put(newAuthor.getEmail().toUpperCase(), newAuthor);
 		return authors;
 	}
 		
 	public Map<String, Book> addBookInDatabase(Book book) {
-		DatabaseValidators.checkIfIsUnic(book.getTitle(), books);
-		DatabaseValidators.checkIfIsUnicIsbn(book.getIsbn(), books);
+		DatabaseAuxiliars.checkIfIsUnic(book.getTitle(), books);
+		DatabaseAuxiliars.checkIfIsUnicIsbn(book.getIsbn(), books);
 		books.put(book.getTitle(), book);
 		return books;
 	}
 
 	public Map<String, Category> addNewCategory(Category category) {
-		DatabaseValidators.checkIfIsUnic(category.getName(), categories);
+		DatabaseAuxiliars.checkIfIsUnic(category.getName(), categories);
 		categories.put(category.getName().toUpperCase(), category); 
 		return categories;
 	}
 	
-	public <T> T searchAuthorOrCategory(String key, Map<String, T> database) {
-		Optional<T> returned = searchInDatabase(key, database);
-		if (!returned.isPresent()) {
-			throw new IllegalStateException("Não encontrado");
-		} 
-		return returned.get();
+	public Author searchAuthor(String email) {
+		Author wanted = DatabaseAuxiliars.searchAuthorOrCategory(email, authors);
+		return wanted;
 	}
 	
-	public <T> Optional<T> searchInDatabase (String value, Map<String, T> database) {
-		T returned = database.get(value.toUpperCase());
-		return Optional.ofNullable(returned);
+	public Category searchCategory(String name) {
+		Category wanted = DatabaseAuxiliars.searchAuthorOrCategory(name, categories);
+		return wanted;
+	}
+	
+	public Optional<Book> seachBook(String name) {
+		Optional<Book> wanted = DatabaseAuxiliars.searchInDatabase(name, books);
+		return wanted;
 	}
 }

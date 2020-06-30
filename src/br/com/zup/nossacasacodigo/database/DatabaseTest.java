@@ -95,9 +95,9 @@ public class DatabaseTest {
 		Author newAuthorOne = new Author(name, email, description);
 		Author newAuthorTwo = new Author(nameTwo, emailTwo, descriptionTwo);
 		database.addNewAuthor(newAuthorOne);
-		Map<String, Author> authors = database.addNewAuthor(newAuthorTwo);
+		database.addNewAuthor(newAuthorTwo);
 		
-		Assert.assertEquals(newAuthorTwo, database.searchAuthorOrCategory(emailTwo, authors));
+		Assert.assertEquals(newAuthorTwo, database.searchAuthor(emailTwo));
 	}
 	
 	@Test
@@ -110,10 +110,10 @@ public class DatabaseTest {
 		Database database = new Database();
 		
 		Author newAuthorOne = new Author(name, email, description);
+	
+		database.addNewAuthor(newAuthorOne);
 		
-		Map<String, Author> authors = database.addNewAuthor(newAuthorOne);
-		
-		Assert.assertThrows(IllegalStateException.class , () -> database.searchAuthorOrCategory("larissao@gmail.com", authors));
+		Assert.assertThrows(IllegalStateException.class , () -> database.searchAuthor("larissao@gmail.com"));
 	}
 	
 	@Test
@@ -236,8 +236,8 @@ public class DatabaseTest {
 		database.addNewCategory(categoryOne);
 		Map<String, Category> categories = database.addNewCategory(categoryTwo);
 		
-		Assert.assertEquals(categoryOne, database.searchAuthorOrCategory("Terror", categories));
-		Assert.assertEquals(categoryTwo, database.searchAuthorOrCategory("ficção científica", categories));
+		Assert.assertEquals(categoryOne, database.searchCategory("Terror"));
+		Assert.assertEquals(categoryTwo, database.searchCategory("ficção científica"));
 	}
 	
 	@Test
@@ -247,7 +247,7 @@ public class DatabaseTest {
 		
 		Map<String, Category> categories = database.addNewCategory(categoryOne);
 		
-		Assert.assertThrows(IllegalStateException.class, () -> database.searchAuthorOrCategory("suspense", categories));
+		Assert.assertThrows(IllegalStateException.class, () -> database.searchCategory("suspense"));
 	}
 	
 }

@@ -28,9 +28,10 @@ public class ShowABook {
 		
 		Book springBoot = new Book(title, synopsis, summary, price, pages, isbn, category, publicationDate, fernandoBoaglio);
 		Database database = new Database();
+		database.addBookInDatabase(springBoot);
 		
-		Optional<Book> bookReturned = database.searchInDatabase("Spring Boot", database.addBookInDatabase(springBoot));
 		
+		Optional<Book> bookReturned = database.seachBook("Spring Boot");
 		//formatação para impressão do valor baseado na locaçização geográfica
 		if (bookReturned.isPresent()) {
 			Book book = bookReturned.get();
