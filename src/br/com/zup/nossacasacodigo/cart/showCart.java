@@ -1,4 +1,4 @@
-package br.com.zup.nossacasacodigo.auxiliars;
+package br.com.zup.nossacasacodigo.cart;
 
 import java.math.BigDecimal;
 import java.text.NumberFormat;
@@ -12,11 +12,8 @@ import br.com.zup.nossacasacodigo.book.Book;
 import br.com.zup.nossacasacodigo.category.Category;
 import br.com.zup.nossacasacodigo.database.Database;
 
-public class Cart {
-	private static List<Book> cart = new ArrayList<Book>();
-	private static BigDecimal finalPrice = new BigDecimal(0);
+public class showCart {
 	static Database database = new Database();
-
 	
 	public static void main(String[] args) {
 		String name = "Fernando Boaglio";
@@ -49,26 +46,17 @@ public class Cart {
 		database.addBookInDatabase(pequenoPrincipe);
 		database.addBookInDatabase(springBoot);
 		
-		addToCart("O pequeno Principe");
-		addToCart("Spring Boot");
+		Cart cart = new Cart();
+		
+		cart.addToCart("O pequeno Principe", database);
+		cart.addToCart("Spring Boot", database);
 
 		
 		//formatação para impressão do valor baseado na locaçização geográfica, com a quantidade pré definida como 1 até ser necessário alterara
 		System.out.format("%2s%40s%25s%25s\n", "ITENS", "PREÇO", "QUANTIDADE", "TOTAL");
-		for (Book book : cart) {
+		for (Book book : cart.getCart()) {
 			System.out.format("%2s%30s%30s%30s\n", book.getTitle(), NumberFormat.getCurrencyInstance().format(book.getPrice()), 1, NumberFormat.getCurrencyInstance().format(book.getPrice()));
-			finalPrice = finalPrice.add(book.getPrice());
 		}
-		System.out.println("Valor final: " + NumberFormat.getCurrencyInstance().format(finalPrice));
-	}
-	
-	private static void addToCart(String wanted) {
-		Optional<Book> bookReturned = database.seachBook(wanted);
-		if (bookReturned.isPresent()) {
-			Book book = bookReturned.get();
-			cart.add(book);
-		} else {
-			System.out.println("Livro não encontrado");
-		}
+		System.out.println("Valor final: " + NumberFormat.getCurrencyInstance().format(cart.getFinalValue()));
 	}
 }

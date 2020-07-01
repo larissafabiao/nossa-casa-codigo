@@ -29,7 +29,6 @@ public class DatabaseAuxiliars {
 	}
 	
 	public static <T> Optional<T> searchInDatabase (String value, Map<String, T> database) {
-		T returned = database.get(value.toUpperCase());
-		return Optional.ofNullable(returned);
+		return Optional.ofNullable(database.get(value.toUpperCase()));
 	}
 }
