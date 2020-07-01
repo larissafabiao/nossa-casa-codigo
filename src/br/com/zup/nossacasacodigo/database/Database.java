@@ -2,6 +2,7 @@ package br.com.zup.nossacasacodigo.database;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 import br.com.zup.nossacasacodigo.author.Author;
 import br.com.zup.nossacasacodigo.book.Book;
@@ -51,5 +52,16 @@ public class Database {
 			return wanted;
 		} 
 		throw new IllegalStateException("Autor não encontrado");
+	}
+	
+	public Optional<Book> searchBook(String name) {
+		Optional<Book> bookToReturn = Optional.empty();
+
+		for (Book book : books.values()) {
+			if (name.equalsIgnoreCase(book.getTitle())) {
+				bookToReturn = Optional.ofNullable(book);
+			}
+		}
+		return bookToReturn;
 	}
 }
