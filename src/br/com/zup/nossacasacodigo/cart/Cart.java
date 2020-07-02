@@ -7,9 +7,9 @@ import br.com.zup.nossacasacodigo.book.Book;
 
 public class Cart {
 	private List<Book> items = new ArrayList<Book>();
-	private static BigDecimal finalValue = new BigDecimal("0.0");
+	private static BigDecimal finalValue = BigDecimal.ZERO;
 
-	public  void addToCart(Book book) {
+	public void addToCart(Book book) {
 		items.add(book);
 		finalValue = finalValue.add(book.getPrice());
 	}

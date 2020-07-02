@@ -8,7 +8,7 @@ import br.com.zup.nossacasacodigo.book.Book;
 import br.com.zup.nossacasacodigo.category.Category;
 import br.com.zup.nossacasacodigo.database.Database;
 
-public class showCart {
+public class ShowCart {
 	static Database database = new Database();
 	
 	public static void main(String[] args) {
