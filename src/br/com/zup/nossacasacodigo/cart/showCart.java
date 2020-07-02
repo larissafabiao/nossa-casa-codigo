@@ -3,10 +3,6 @@ package br.com.zup.nossacasacodigo.cart;
 import java.math.BigDecimal;
 import java.text.NumberFormat;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-
 import br.com.zup.nossacasacodigo.author.Author;
 import br.com.zup.nossacasacodigo.book.Book;
 import br.com.zup.nossacasacodigo.category.Category;
@@ -43,13 +39,11 @@ public class showCart {
 		category = new Category("clássico moderno");
 
 		Book pequenoPrincipe = new Book(title, synopsis, summary, price, pages, isbn, category, publicationDate, fernandoBoaglio);
-		database.addBookInDatabase(pequenoPrincipe);
-		database.addBookInDatabase(springBoot);
-		
+	
 		Cart cart = new Cart();
 		
-		cart.addToCart("O pequeno Principe", database);
-		cart.addToCart("Spring Boot", database);
+		cart.addToCart(pequenoPrincipe);
+		cart.addToCart(springBoot);
 
 		
 		//formatação para impressão do valor baseado na locaçização geográfica, com a quantidade pré definida como 1 até ser necessário alterara
