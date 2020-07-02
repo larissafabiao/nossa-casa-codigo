@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import java.util.Map;
 
 import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 
@@ -36,7 +36,7 @@ public class DatabaseTest {
 		String summary = "It's very easy to make some words **bold** and other words *italic* with Markdown.";
 		BigDecimal price = new BigDecimal("30.0");
 		int pages = 300;
-		String isbn = "Livro2";
+		String isbn = "Livro 1";
 		LocalDate publicationDate = LocalDate.of(2020,8,16);
 		this.book = new Book(title, synopsis, summary, price, pages, isbn, category, publicationDate, author);
 	}
@@ -124,7 +124,7 @@ public class DatabaseTest {
 		String summary = "It's very easy to make some words **bold** and other words *italic* with Markdown.";
 		BigDecimal price = new BigDecimal("25.0");
 		int pages = 120;
-		String isbn = "Livro1";
+		String isbn = "Livro 1";
 		LocalDate publicationDate = LocalDate.of(2020,8,16);
 		Category category = new Category("clássico moderno");
 		
@@ -141,7 +141,7 @@ public class DatabaseTest {
 	
 	@Test
 	public void testeWithTheInsertionOfTwoCatgoriesWithTheSameName() {
-		Category categoryTwo = new Category("Tecnico");
+		Category categoryTwo = new Category("Terror");
 		
 		database.addNewCategory(category);
 		
