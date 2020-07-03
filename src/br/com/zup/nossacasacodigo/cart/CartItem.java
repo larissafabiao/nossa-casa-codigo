@@ -1,5 +1,7 @@
 package br.com.zup.nossacasacodigo.cart;
 
+import java.math.BigDecimal;
+
 import br.com.zup.nossacasacodigo.book.Book;
 
 public class CartItem {
@@ -9,6 +11,10 @@ public class CartItem {
 	public CartItem(Book book, int quantity) {
 		this.book = book;
 		this.setQuantity(quantity);
+	}
+	
+	public BigDecimal calculateSubtotal() {
+		return book.getPrice().multiply(new BigDecimal(quantity));
 	}
 	
 	public Book getBook() {

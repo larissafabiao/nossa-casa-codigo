@@ -2,11 +2,13 @@ package br.com.zup.nossacasacodigo.book;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Comparator;
+
 import br.com.zup.nossacasacodigo.author.Author;
 import br.com.zup.nossacasacodigo.auxiliars.IsEmpty;
 import br.com.zup.nossacasacodigo.category.Category;
 
-public class Book {
+public class Book implements Comparable<Book> {
 	private String title;
 	private String synopsis;
 	private String summary;
@@ -95,6 +97,14 @@ public class Book {
 
 	public Author getAuthor() {
 		return author;
+	}
+
+	@Override
+	public int compareTo(Book o) {
+		if(o.title.equals(this.title) && o.isbn.equals(this.isbn)) {
+			return 0;
+		}
+		return 1;
 	}
 	
 }

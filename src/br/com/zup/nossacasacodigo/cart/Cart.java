@@ -1,10 +1,7 @@
 package br.com.zup.nossacasacodigo.cart;
 
 import java.math.BigDecimal;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
@@ -15,21 +12,26 @@ public class Cart {
 	private static BigDecimal finalValue = BigDecimal.ZERO;
 
 	public void addToCart(Book book, int quantity) {
-		Optional<CartItem> alreadyInCart = checkIfIsInCart(book);
-		if (alreadyInCart.isPresent()) {
-			CartItem item = alreadyInCart.get();
-			item.setQuantity(item.getQuantity()+ quantity);
-		} else {
-			CartItem newItem = new CartItem(book, quantity);
-			items.add(newItem);
+		if (quantity < 0 || book == null) {
+			throw new IllegalArgumentException("Livro ou quantidade inválida");
 		}
-	
-		finalValue = finalValue.add(book.getPrice().multiply(new BigDecimal(quantity)));
+		Optional<CartItem> alreadyInCart = checkIfIsInCart(book);
+		CartItem item;
+		if (alreadyInCart.isPresent()) {
+			item = alreadyInCart.get();
+			finalValue = finalValue.subtract(item.calculateSubtotal());
+			item.setQuantity(item.getQuantity() + quantity);
+			finalValue = finalValue.add(item.calculateSubtotal());
+		} else {
+			item = new CartItem(book, quantity);
+			items.add(item);
+			finalValue = finalValue.add(item.calculateSubtotal());
+		}
 	}
 
 	private Optional<CartItem> checkIfIsInCart(Book book) {
 		for (CartItem cartItem : items) {
-			if (cartItem.getBook() == book) {
+			if (book.compareTo(cartItem.getBook()) == 0) {
 				return Optional.ofNullable(cartItem);
 			}
 		}

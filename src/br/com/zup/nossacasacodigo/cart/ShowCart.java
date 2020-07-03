@@ -28,7 +28,7 @@ public class ShowCart {
 		Category category = new Category("clássico moderno");
 		
 		Book springBoot = new Book(title, synopsis, summary, price, pages, isbn, category, publicationDate, fernandoBoaglio);
-		
+		Book springBoot2 = new Book(title, synopsis, summary, price, pages, isbn, category, publicationDate, fernandoBoaglio);
 		title = "O pequeno Principe";
 		synopsis = "descrição livro 2";
 		summary = "It's very easy to make some words **bold** and other words *italic* with Markdown.";
@@ -44,7 +44,7 @@ public class ShowCart {
 		
 		cart.addToCart(pequenoPrincipe, 1);
 		cart.addToCart(springBoot, 1);
-		cart.addToCart(springBoot, 3);
+		cart.addToCart(springBoot2, 2);
 		
 		//formatação para impressão do valor baseado na locaçização geográfica, com a quantidade pré definida como 1 até ser necessário alterara
 		System.out.format("%2s%40s%25s%25s\n", "ITENS", "PREÇO", "QUANTIDADE", "TOTAL");		
