@@ -1,6 +1,7 @@
 package br.com.zup.nossacasacodigo.auxiliars;
 
 import java.math.BigDecimal;
+import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.util.Optional;
 import br.com.zup.nossacasacodigo.author.Author;
@@ -29,13 +30,14 @@ public class ShowABook {
 		Database database = new Database();
 		database.addBookInDatabase(springBoot);
 		
-		Optional<Book> bookReturned = database.searchBook("Spring Boot");
 		
+		Optional<Book> bookReturned = database.seachBook("Spring Boot");
+		//formatação para impressão do valor baseado na locaçização geográfica
 		if (bookReturned.isPresent()) {
 			Book book = bookReturned.get();
 			System.out.println(book.getTitle());
 			System.out.println(book.getAuthor().getName());
-			System.out.println("R$ " + book.getPrice());
+			System.out.println(NumberFormat.getCurrencyInstance().format(book.getPrice()));
 			System.out.println("Conteúdo: ");
 			System.out.println(book.getSynopsis());
 			System.out.println("Sumário: ");
