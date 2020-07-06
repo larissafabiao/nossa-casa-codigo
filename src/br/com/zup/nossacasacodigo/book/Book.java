@@ -8,7 +8,7 @@ import br.com.zup.nossacasacodigo.author.Author;
 import br.com.zup.nossacasacodigo.auxiliars.IsEmpty;
 import br.com.zup.nossacasacodigo.category.Category;
 
-public class Book implements Comparable<Book> {
+public class Book {
 	private String title;
 	private String synopsis;
 	private String summary;
@@ -100,11 +100,20 @@ public class Book implements Comparable<Book> {
 	}
 
 	@Override
-	public int compareTo(Book o) {
-		if(o.title.equals(this.title) && o.isbn.equals(this.isbn)) {
-			return 0;
-		}
-		return 1;
-	}
+    public boolean equals(Object o) { 
+        if (o == this) { 
+            return true; 
+        } 
+        
+        if (!(o instanceof Book)) { 
+            return false; 
+        } 
+          
+        Book c = (Book) o; 
+        if(this.title.equalsIgnoreCase(c.title) && this.isbn.equalsIgnoreCase(c.isbn)) {
+        	return true;
+        }
+        return false;
+    } 
 	
 }
