@@ -5,12 +5,16 @@ import java.util.Map;
 import java.util.Optional;
 import br.com.zup.nossacasacodigo.author.Author;
 import br.com.zup.nossacasacodigo.book.Book;
+import br.com.zup.nossacasacodigo.cart.DiscountCoupon;
 import br.com.zup.nossacasacodigo.category.Category;
+import br.com.zup.nossacasacodigo.client.Client;
 
 public class Database {
-	private Map<String, Author> authors =  new HashMap<String, Author>();
-	private Map<String, Book> books = new HashMap<String, Book>();
-	private Map<String, Category> categories = new HashMap<String, Category>();
+	private Map<String, Author> authors =  new HashMap<>();
+	private Map<String, Book> books = new HashMap<>();
+	private Map<String, Category> categories = new HashMap<>();
+	private Map<String, Client> clients =  new HashMap<>();
+	private Map<String, DiscountCoupon> coupons =  new HashMap<>();
 	
 	public Map<String, Author> addNewAuthor(Author newAuthor) {
 		DatabaseAuxiliars.checkIfIsUnic(newAuthor.getEmail(), authors);
@@ -44,5 +48,19 @@ public class Database {
 	public Optional<Book> seachBook(String name) {
 		Optional<Book> wanted = DatabaseAuxiliars.searchInDatabase(name, books);
 		return wanted;
+	}
+	
+	public Optional<Client> seachClient(String cpf) {
+		Optional<Client> wanted = DatabaseAuxiliars.searchInDatabase(cpf, clients);
+		return wanted;
+	}
+	
+	public void addNewCoupon(DiscountCoupon coupon) {
+		DatabaseAuxiliars.checkIfIsUnic(coupon.getDiscountCode(), coupons);
+		coupons.put(coupon.getDiscountCode(), coupon);
+	}
+	
+	public Optional<DiscountCoupon> searchCoupon(String code) {
+		return  DatabaseAuxiliars.searchInDatabase(code, coupons);
 	}
 }

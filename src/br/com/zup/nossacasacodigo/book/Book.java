@@ -2,10 +2,8 @@ package br.com.zup.nossacasacodigo.book;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.Comparator;
-
 import br.com.zup.nossacasacodigo.author.Author;
-import br.com.zup.nossacasacodigo.auxiliars.IsEmpty;
+import br.com.zup.nossacasacodigo.auxiliars.Validators;
 import br.com.zup.nossacasacodigo.category.Category;
 
 public class Book {
@@ -23,19 +21,19 @@ public class Book {
 		nonNullObjectValidator(category);
 		nonNullObjectValidator(author);
 		
-		this.title = IsEmpty.check(title, "Título").toUpperCase();
+		this.title = Validators.checkNull(title, "Título").toUpperCase();
 		this.synopsis = synopsisValidator(synopsis);
 		this.summary = summary;
 		this.price = priceValidator(price);
 		this.pages = pagesValidator(pages);
-		this.isbn = IsEmpty.check(isbn, "ibsn");
+		this.isbn = Validators.checkNull(isbn, "ibsn");
 		this.publicationDate = publicationDateValidator(publicationDate);
 		this.category = category;
 		this.author = author;
 	}
 	
 	private String synopsisValidator(String summary) {
-		IsEmpty.check(summary, "Sumário");
+		Validators.checkNull(summary, "Sumário");
 		if (summary.length() > 500) {
 			throw new IllegalArgumentException("Tamanho da descrição maior do que o permitido");
 		}

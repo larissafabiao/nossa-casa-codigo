@@ -20,13 +20,10 @@ public class Cart {
 		if (alreadyInCart.isPresent()) {
 			item = alreadyInCart.get();
 			//realizamos a subtração do valor previamente existente desse item do carrinho para depois poder adicionar somente o valor atual dos n elementos presentes no carrinho
-			finalValue = finalValue.subtract(item.calculateSubtotal());
 			item.setQuantity(item.getQuantity() + quantity);
-			finalValue = finalValue.add(item.calculateSubtotal());
 		} else {
 			item = new CartItem(book, quantity);
 			items.add(item);
-			finalValue = finalValue.add(item.calculateSubtotal());
 		}
 	}
 
@@ -40,9 +37,15 @@ public class Cart {
 	}
 
 	public BigDecimal getFinalValue() {
+		for (CartItem cartItem : items) {
+			finalValue = finalValue.add(cartItem.calculateSubtotal());
+		}
 		return finalValue;
 	}
 
+	public void setFinalValue(BigDecimal newValue) {
+		finalValue = newValue;
+	}
 	public Set<CartItem> getCart() {
 		return items;
 	}

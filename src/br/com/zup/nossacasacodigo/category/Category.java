@@ -1,12 +1,12 @@
 package br.com.zup.nossacasacodigo.category;
 
-import br.com.zup.nossacasacodigo.auxiliars.IsEmpty;
+import br.com.zup.nossacasacodigo.auxiliars.Validators;
 
 public class Category {
 	private String name;
 	
 	public Category(String name) {
-		this.name = IsEmpty.check(name, "nome").toUpperCase();
+		this.name = Validators.checkNull(name, "nome").toUpperCase();
 	}
 
 	public String getName() {
