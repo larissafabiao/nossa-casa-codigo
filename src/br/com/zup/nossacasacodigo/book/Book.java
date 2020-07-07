@@ -2,6 +2,8 @@ package br.com.zup.nossacasacodigo.book;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Comparator;
+
 import br.com.zup.nossacasacodigo.author.Author;
 import br.com.zup.nossacasacodigo.auxiliars.IsEmpty;
 import br.com.zup.nossacasacodigo.category.Category;
@@ -96,5 +98,22 @@ public class Book {
 	public Author getAuthor() {
 		return author;
 	}
+
+	@Override
+    public boolean equals(Object o) { 
+        if (o == this) { 
+            return true; 
+        } 
+        
+        if (!(o instanceof Book)) { 
+            return false; 
+        } 
+          
+        Book c = (Book) o; 
+        if(this.title.equalsIgnoreCase(c.title) && this.isbn.equalsIgnoreCase(c.isbn)) {
+        	return true;
+        }
+        return false;
+    } 
 	
 }
