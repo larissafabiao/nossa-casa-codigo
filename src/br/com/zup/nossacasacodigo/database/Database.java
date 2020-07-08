@@ -49,18 +49,4 @@ public class Database {
 		Optional<Book> wanted = DatabaseAuxiliars.searchInDatabase(name, books);
 		return wanted;
 	}
-	
-	public Optional<Client> seachClient(String cpf) {
-		Optional<Client> wanted = DatabaseAuxiliars.searchInDatabase(cpf, clients);
-		return wanted;
-	}
-	
-	public void addNewCoupon(DiscountCoupon coupon) {
-		DatabaseAuxiliars.checkIfIsUnic(coupon.getDiscountCode(), coupons);
-		coupons.put(coupon.getDiscountCode(), coupon);
-	}
-	
-	public Optional<DiscountCoupon> searchCoupon(String code) {
-		return  DatabaseAuxiliars.searchInDatabase(code, coupons);
-	}
 }

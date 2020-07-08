@@ -36,16 +36,21 @@ public class Cart {
 		return Optional.empty();
 	}
 
-	public BigDecimal getFinalValue() {
+	public BigDecimal calculateFinalValue() {
 		for (CartItem cartItem : items) {
 			finalValue = finalValue.add(cartItem.calculateSubtotal());
 		}
 		return finalValue;
 	}
+	
+	public BigDecimal getFinalValue() {
+		return finalValue;
+	}
 
 	public void setFinalValue(BigDecimal newValue) {
-		finalValue = newValue;
+		this.finalValue = newValue;
 	}
+	
 	public Set<CartItem> getCart() {
 		return items;
 	}

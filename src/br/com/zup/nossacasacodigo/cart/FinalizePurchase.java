@@ -11,14 +11,13 @@ import br.com.zup.nossacasacodigo.author.Author;
 import br.com.zup.nossacasacodigo.book.Book;
 import br.com.zup.nossacasacodigo.category.Category;
 import br.com.zup.nossacasacodigo.client.Client;
-import br.com.zup.nossacasacodigo.database.Database;
-import br.com.zup.nossacasacodigo.database.DatabaseAuxiliars;
+import br.com.zup.nossacasacodigo.database.PurchaseDatabase;
 
 
 
 public class FinalizePurchase {
 	int id = 0;
-	static Database db = new Database();
+	static PurchaseDatabase db = new PurchaseDatabase();
 	public static void main(String[] args) {
 		String name = "Fernando Boaglio";
 		String email = "larissafabiao@gmail.com";
@@ -74,7 +73,6 @@ public class FinalizePurchase {
 		String city = sc.nextLine();
 		System.out.println("Cupom de desconto: ");
 		Optional<String> coupon = Optional.ofNullable(sc.nextLine());
-		
 	
 		Optional<Client> verifyClient = db.seachClient(cpf);
 		Client client;
@@ -85,14 +83,13 @@ public class FinalizePurchase {
 		}
 		if(coupon.isPresent()) {
 			Optional<DiscountCoupon> discount = db.searchCoupon(coupon.get());
+			BigDecimal finalValue = cart.calculateFinalValue();
 			if(discount.isPresent()) {
-				BigDecimal finalValue = cart.getFinalValue();
 				BigDecimal newValue = finalValue.subtract(finalValue.multiply(discount.get().getDiscount()));
 				cart.setFinalValue(newValue);
 			}
 		}
 		int id = client.addPurchase(cart);
-		System.out.println("id da compra: " + id + "valor final: " + cart.getFinalValue());
+		System.out.println("id da compra: " + id + ",   valor final: " + cart.getFinalValue());
 	}
-	
 }
