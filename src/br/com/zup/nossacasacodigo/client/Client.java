@@ -91,6 +91,10 @@ public class Client {
 		purchases.put(id, cart);
 		return id;
 	}
+
+	public String getCpf() {
+		return cpf;
+	}
 	
 	
 }

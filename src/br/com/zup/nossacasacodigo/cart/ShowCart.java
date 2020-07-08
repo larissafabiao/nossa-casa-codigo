@@ -3,6 +3,8 @@ package br.com.zup.nossacasacodigo.cart;
 import java.math.BigDecimal;
 import java.text.NumberFormat;
 import java.time.LocalDate;
+import java.util.Optional;
+
 import br.com.zup.nossacasacodigo.author.Author;
 import br.com.zup.nossacasacodigo.book.Book;
 import br.com.zup.nossacasacodigo.category.Category;
@@ -52,6 +54,6 @@ public class ShowCart {
 			Book book = item.getBook();
 			System.out.format("%2s%30s%30s%30s\n", book.getTitle(), NumberFormat.getCurrencyInstance().format(book.getPrice()), item.getQuantity(), NumberFormat.getCurrencyInstance().format(book.getPrice()));
 		}
-		System.out.println("Valor final: " + NumberFormat.getCurrencyInstance().format(cart.getFinalValue()));
+		System.out.println("Valor final: " + NumberFormat.getCurrencyInstance().format(cart.calculateFinalValue(Optional.empty())));
 	}
 }

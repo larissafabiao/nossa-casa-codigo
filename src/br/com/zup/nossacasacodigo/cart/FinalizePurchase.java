@@ -78,18 +78,12 @@ public class FinalizePurchase {
 		Client client;
 		if(verifyClient.isEmpty()) {
 			client = new Client(clientName, surname, cientEmail, cpf, address, complement, city);
+			db.addNewClient(client);
 		} else {
 			client = verifyClient.get();
 		}
-		if(coupon.isPresent()) {
-			Optional<DiscountCoupon> discount = db.searchCoupon(coupon.get());
-			BigDecimal finalValue = cart.calculateFinalValue();
-			if(discount.isPresent()) {
-				BigDecimal newValue = finalValue.subtract(finalValue.multiply(discount.get().getDiscount()));
-				cart.setFinalValue(newValue);
-			}
-		}
+		Optional<DiscountCoupon> discount = db.searchCoupon(coupon.get());
 		int id = client.addPurchase(cart);
-		System.out.println("id da compra: " + id + ",   valor final: " + cart.getFinalValue());
+		System.out.println("id da compra: " + id + ",   valor final: " + cart.calculateFinalValue(discount));
 	}
 }

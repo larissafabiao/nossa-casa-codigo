@@ -9,10 +9,9 @@ import br.com.zup.nossacasacodigo.book.Book;
 
 public class Cart {
 	private Set<CartItem> items = new HashSet<>();
-	private static BigDecimal finalValue = BigDecimal.ZERO;
 
 	public void addToCart(Book book, int quantity) {
-		if (quantity < 0 || book == null) {
+		if (quantity <= 0 || book == null) {
 			throw new IllegalArgumentException("Livro ou quantidade inválida");
 		}
 		Optional<CartItem> alreadyInCart = checkIfIsInCart(book);
@@ -36,19 +35,15 @@ public class Cart {
 		return Optional.empty();
 	}
 
-	public BigDecimal calculateFinalValue() {
+	public BigDecimal calculateFinalValue(Optional<DiscountCoupon> coupon) {
+		BigDecimal finalValue = BigDecimal.ZERO;
 		for (CartItem cartItem : items) {
 			finalValue = finalValue.add(cartItem.calculateSubtotal());
 		}
+		if(coupon.isPresent()) {
+			finalValue = finalValue.subtract(finalValue.multiply(coupon.get().getDiscount()));
+		}
 		return finalValue;
-	}
-	
-	public BigDecimal getFinalValue() {
-		return finalValue;
-	}
-
-	public void setFinalValue(BigDecimal newValue) {
-		this.finalValue = newValue;
 	}
 	
 	public Set<CartItem> getCart() {

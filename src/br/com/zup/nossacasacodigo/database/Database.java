@@ -5,17 +5,13 @@ import java.util.Map;
 import java.util.Optional;
 import br.com.zup.nossacasacodigo.author.Author;
 import br.com.zup.nossacasacodigo.book.Book;
-import br.com.zup.nossacasacodigo.cart.DiscountCoupon;
 import br.com.zup.nossacasacodigo.category.Category;
-import br.com.zup.nossacasacodigo.client.Client;
 
 public class Database {
 	private Map<String, Author> authors =  new HashMap<>();
 	private Map<String, Book> books = new HashMap<>();
 	private Map<String, Category> categories = new HashMap<>();
-	private Map<String, Client> clients =  new HashMap<>();
-	private Map<String, DiscountCoupon> coupons =  new HashMap<>();
-	
+
 	public Map<String, Author> addNewAuthor(Author newAuthor) {
 		DatabaseAuxiliars.checkIfIsUnic(newAuthor.getEmail(), authors);
 		authors.put(newAuthor.getEmail().toUpperCase(), newAuthor);
