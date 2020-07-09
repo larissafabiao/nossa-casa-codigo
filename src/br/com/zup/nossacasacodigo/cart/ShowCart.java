@@ -50,10 +50,10 @@ public class ShowCart {
 		
 		//formatação para impressão do valor baseado na locaçização geográfica, com a quantidade pré definida como 1 até ser necessário alterara
 		System.out.format("%2s%40s%25s%25s\n", "ITENS", "PREÇO", "QUANTIDADE", "TOTAL");		
-		for (CartItem item : cart.getCart()) {
+		for (CartItem item : cart.getCartItems()) {
 			Book book = item.getBook();
 			System.out.format("%2s%30s%30s%30s\n", book.getTitle(), NumberFormat.getCurrencyInstance().format(book.getPrice()), item.getQuantity(), NumberFormat.getCurrencyInstance().format(book.getPrice()));
 		}
-		System.out.println("Valor final: " + NumberFormat.getCurrencyInstance().format(cart.calculateFinalValue(Optional.empty())));
+		System.out.println("Valor final: " + NumberFormat.getCurrencyInstance().format(cart.calculateFinalValue()));
 	}
 }

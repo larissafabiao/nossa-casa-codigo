@@ -48,7 +48,7 @@ public class CartTest {
 	public void testCreatingACartWithValidInformationReturningTheCorrectFinalPrice() {
 		Cart cart = new Cart();
 		cart.addToCart(book, 2);
-		Assert.assertEquals(new BigDecimal("60.0"), cart.calculateFinalValue(Optional.empty()));
+		Assert.assertEquals(new BigDecimal("60.0"), cart.calculateFinalValue());
 	}
 	
 	@Test
@@ -62,8 +62,8 @@ public class CartTest {
 		Cart cart = new Cart();
 		cart.addToCart(book, 2);
 		cart.addToCart(book, 2);
-		Assert.assertEquals(new BigDecimal("120.0"), cart.calculateFinalValue(null));
-		for (CartItem item : cart.getCart()) {
+		Assert.assertEquals(new BigDecimal("120.0"), cart.calculateFinalValue());
+		for (CartItem item : cart.getCartItems()) {
 			Assert.assertEquals(4, item.getQuantity());
 		}
 	}

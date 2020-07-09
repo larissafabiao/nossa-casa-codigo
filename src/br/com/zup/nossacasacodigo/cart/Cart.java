@@ -10,6 +10,7 @@ import br.com.zup.nossacasacodigo.purchase.DiscountCoupon;
 
 public class Cart {
 	private Set<CartItem> items = new HashSet<>();
+	Optional<DiscountCoupon> coupon;
 
 	public void addToCart(Book book, int quantity) {
 		if (quantity <= 0 || book == null) {
@@ -36,7 +37,7 @@ public class Cart {
 		return Optional.empty();
 	}
 
-	public BigDecimal calculateFinalValue(Optional<DiscountCoupon> coupon) {
+	public BigDecimal calculateFinalValue() {
 		BigDecimal finalValue = BigDecimal.ZERO;
 		for (CartItem cartItem : items) {
 			finalValue = finalValue.add(cartItem.calculateSubtotal());
@@ -47,7 +48,8 @@ public class Cart {
 		return finalValue;
 	}
 	
-	public Set<CartItem> getCart() {
+	public Set<CartItem> getCartItems() {
 		return items;
 	}
+
 }

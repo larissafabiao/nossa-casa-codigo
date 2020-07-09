@@ -17,7 +17,7 @@ import br.com.zup.nossacasacodigo.database.PurchaseDatabase;
 
 
 public class FinalizePurchase {
-	int id = 0;
+	static int id = 0;
 	static PurchaseDatabase db = new PurchaseDatabase();
 	public static void main(String[] args) {
 		String name = "Fernando Boaglio";
@@ -83,8 +83,15 @@ public class FinalizePurchase {
 		} else {
 			client = verifyClient.get();
 		}
+	
 		Optional<DiscountCoupon> discount = db.searchCoupon(coupon.get());
-		int id = client.addPurchase(cart);
-		System.out.println("id da compra: " + id + ",   valor final: " + cart.calculateFinalValue(discount));
+		Purchase purchase = new Purchase(cart, discount.get(), generateId());
+		client.addPurchase(purchase);
+		System.out.println("id da compra: " + id + ",   valor final: " + cart.calculateFinalValue());
+	}
+	
+	private static int generateId() {
+		id += 1;
+		return id;
 	}
 }
