@@ -12,7 +12,7 @@ import org.junit.jupiter.api.BeforeEach;
 import br.com.zup.nossacasacodigo.author.Author;
 import br.com.zup.nossacasacodigo.book.Book;
 import br.com.zup.nossacasacodigo.category.Category;
-import br.com.zup.nossacasacodigo.cart.DiscountCoupon;
+import br.com.zup.nossacasacodigo.purchase.DiscountCoupon;
 
 public class CartTest {
 	Book book;
@@ -56,11 +56,13 @@ public class CartTest {
 		Cart cart = new Cart();
 		Assertions.assertThrows(IllegalArgumentException.class,() -> cart.addToCart(book, 0));
 	}
+	
+	@Test
 	public void testCreatingACartWithTwoEqualBooksWithMoreThanOneInsertionReturningTheCorrectFinalPriceAndQuantity() {
 		Cart cart = new Cart();
 		cart.addToCart(book, 2);
 		cart.addToCart(book, 2);
-		Assert.assertEquals(new BigDecimal("120.0"), cart.calculateFinalValue(Optional.empty()));
+		Assert.assertEquals(new BigDecimal("120.0"), cart.calculateFinalValue(null));
 		for (CartItem item : cart.getCart()) {
 			Assert.assertEquals(4, item.getQuantity());
 		}

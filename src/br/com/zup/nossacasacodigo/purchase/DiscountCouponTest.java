@@ -1,4 +1,4 @@
-package br.com.zup.nossacasacodigo.cart;
+package br.com.zup.nossacasacodigo.purchase;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -7,9 +7,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class DiscountCouponTest {
-	DiscountCoupon discount;
-	
+public class DiscountCouponTest {	
 	@Test
 	public void testCreatingACorrectCouponReturningASucess() {
 		LocalDateTime expirationDate = LocalDateTime.of(2020, 10, 1, 23, 59);

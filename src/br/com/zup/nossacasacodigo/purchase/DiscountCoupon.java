@@ -1,4 +1,4 @@
-package br.com.zup.nossacasacodigo.cart;
+package br.com.zup.nossacasacodigo.purchase;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -23,7 +23,7 @@ public class DiscountCoupon {
 		if(expiration.isBefore(created) || expiration.isEqual(created)) {
 			throw new IllegalArgumentException("A data de expiração do cupon precisa ser poserior a de criação");
 		}
-		return null;
+		return expirationDate;
 	}
 	
 	private BigDecimal discountValidator(BigDecimal discount) {

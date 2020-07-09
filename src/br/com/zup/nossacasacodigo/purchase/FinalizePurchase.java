@@ -1,4 +1,4 @@
-package br.com.zup.nossacasacodigo.cart;
+package br.com.zup.nossacasacodigo.purchase;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -9,6 +9,7 @@ import java.util.Scanner;
 
 import br.com.zup.nossacasacodigo.author.Author;
 import br.com.zup.nossacasacodigo.book.Book;
+import br.com.zup.nossacasacodigo.cart.Cart;
 import br.com.zup.nossacasacodigo.category.Category;
 import br.com.zup.nossacasacodigo.client.Client;
 import br.com.zup.nossacasacodigo.database.PurchaseDatabase;

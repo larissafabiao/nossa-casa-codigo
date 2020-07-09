@@ -8,8 +8,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 
-import br.com.zup.nossacasacodigo.cart.DiscountCoupon;
 import br.com.zup.nossacasacodigo.client.Client;
+import br.com.zup.nossacasacodigo.purchase.DiscountCoupon;
 
 public class PurchaseDatabaseTest {
 		private PurchaseDatabase database;

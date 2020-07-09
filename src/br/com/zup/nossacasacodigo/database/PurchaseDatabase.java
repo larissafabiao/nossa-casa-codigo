@@ -4,8 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-import br.com.zup.nossacasacodigo.cart.DiscountCoupon;
 import br.com.zup.nossacasacodigo.client.Client;
+import br.com.zup.nossacasacodigo.purchase.DiscountCoupon;
 
 public class PurchaseDatabase {
 	private Map<String, Client> clients =  new HashMap<>();

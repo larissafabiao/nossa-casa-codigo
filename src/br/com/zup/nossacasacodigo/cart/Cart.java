@@ -6,6 +6,7 @@ import java.util.Optional;
 import java.util.Set;
 
 import br.com.zup.nossacasacodigo.book.Book;
+import br.com.zup.nossacasacodigo.purchase.DiscountCoupon;
 
 public class Cart {
 	private Set<CartItem> items = new HashSet<>();
@@ -40,7 +41,7 @@ public class Cart {
 		for (CartItem cartItem : items) {
 			finalValue = finalValue.add(cartItem.calculateSubtotal());
 		}
-		if(coupon.isPresent()) {
+		if(coupon != null && coupon.isPresent()) {
 			finalValue = finalValue.subtract(finalValue.multiply(coupon.get().getDiscount()));
 		}
 		return finalValue;
