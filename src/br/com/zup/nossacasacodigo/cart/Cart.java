@@ -6,13 +6,14 @@ import java.util.Optional;
 import java.util.Set;
 
 import br.com.zup.nossacasacodigo.book.Book;
+import br.com.zup.nossacasacodigo.purchase.DiscountCoupon;
 
 public class Cart {
 	private Set<CartItem> items = new HashSet<>();
-	private static BigDecimal finalValue = BigDecimal.ZERO;
+	Optional<DiscountCoupon> coupon;
 
 	public void addToCart(Book book, int quantity) {
-		if (quantity < 0 || book == null) {
+		if (quantity <= 0 || book == null) {
 			throw new IllegalArgumentException("Livro ou quantidade inválida");
 		}
 		Optional<CartItem> alreadyInCart = checkIfIsInCart(book);
@@ -20,13 +21,10 @@ public class Cart {
 		if (alreadyInCart.isPresent()) {
 			item = alreadyInCart.get();
 			//realizamos a subtração do valor previamente existente desse item do carrinho para depois poder adicionar somente o valor atual dos n elementos presentes no carrinho
-			finalValue = finalValue.subtract(item.calculateSubtotal());
 			item.setQuantity(item.getQuantity() + quantity);
-			finalValue = finalValue.add(item.calculateSubtotal());
 		} else {
 			item = new CartItem(book, quantity);
 			items.add(item);
-			finalValue = finalValue.add(item.calculateSubtotal());
 		}
 	}
 
@@ -39,11 +37,19 @@ public class Cart {
 		return Optional.empty();
 	}
 
-	public BigDecimal getFinalValue() {
+	public BigDecimal calculateFinalValue() {
+		BigDecimal finalValue = BigDecimal.ZERO;
+		for (CartItem cartItem : items) {
+			finalValue = finalValue.add(cartItem.calculateSubtotal());
+		}
+		if(coupon != null && coupon.isPresent()) {
+			finalValue = finalValue.subtract(finalValue.multiply(coupon.get().getDiscount()));
+		}
 		return finalValue;
 	}
-
-	public Set<CartItem> getCart() {
+	
+	public Set<CartItem> getCartItems() {
 		return items;
 	}
+
 }

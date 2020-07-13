@@ -8,10 +8,10 @@ import br.com.zup.nossacasacodigo.book.Book;
 import br.com.zup.nossacasacodigo.category.Category;
 
 public class Database {
-	private Map<String, Author> authors =  new HashMap<String, Author>();
-	private Map<String, Book> books = new HashMap<String, Book>();
-	private Map<String, Category> categories = new HashMap<String, Category>();
-	
+	private Map<String, Author> authors =  new HashMap<>();
+	private Map<String, Book> books = new HashMap<>();
+	private Map<String, Category> categories = new HashMap<>();
+
 	public Map<String, Author> addNewAuthor(Author newAuthor) {
 		DatabaseAuxiliars.checkIfIsUnic(newAuthor.getEmail(), authors);
 		authors.put(newAuthor.getEmail().toUpperCase(), newAuthor);

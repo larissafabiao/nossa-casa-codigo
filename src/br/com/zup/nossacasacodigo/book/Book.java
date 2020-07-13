@@ -2,10 +2,8 @@ package br.com.zup.nossacasacodigo.book;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.Comparator;
-
 import br.com.zup.nossacasacodigo.author.Author;
-import br.com.zup.nossacasacodigo.auxiliars.IsEmpty;
+import br.com.zup.nossacasacodigo.auxiliars.Validators;
 import br.com.zup.nossacasacodigo.category.Category;
 
 public class Book {
@@ -23,19 +21,19 @@ public class Book {
 		nonNullObjectValidator(category);
 		nonNullObjectValidator(author);
 		
-		this.title = IsEmpty.check(title, "Título").toUpperCase();
+		this.title = Validators.checkNull(title, "Título").toUpperCase();
 		this.synopsis = synopsisValidator(synopsis);
 		this.summary = summary;
 		this.price = priceValidator(price);
 		this.pages = pagesValidator(pages);
-		this.isbn = IsEmpty.check(isbn, "ibsn");
+		this.isbn = Validators.checkNull(isbn, "ibsn");
 		this.publicationDate = publicationDateValidator(publicationDate);
 		this.category = category;
 		this.author = author;
 	}
 	
 	private String synopsisValidator(String summary) {
-		IsEmpty.check(summary, "Sumário");
+		Validators.checkNull(summary, "Sumário");
 		if (summary.length() > 500) {
 			throw new IllegalArgumentException("Tamanho da descrição maior do que o permitido");
 		}
@@ -100,20 +98,36 @@ public class Book {
 	}
 
 	@Override
-    public boolean equals(Object o) { 
-        if (o == this) { 
-            return true; 
-        } 
-        
-        if (!(o instanceof Book)) { 
-            return false; 
-        } 
-          
-        Book c = (Book) o; 
-        if(this.title.equalsIgnoreCase(c.title) && this.isbn.equalsIgnoreCase(c.isbn)) {
-        	return true;
-        }
-        return false;
-    } 
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((isbn == null) ? 0 : isbn.hashCode());
+		result = prime * result + ((title == null) ? 0 : title.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Book other = (Book) obj;
+		if (isbn == null) {
+			if (other.isbn != null)
+				return false;
+		} else if (!isbn.equals(other.isbn))
+			return false;
+		if (title == null) {
+			if (other.title != null)
+				return false;
+		} else if (!title.equals(other.title))
+			return false;
+		return true;
+	}
+
+	
 	
 }
