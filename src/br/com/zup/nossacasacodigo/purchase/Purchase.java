@@ -1,18 +1,18 @@
 package br.com.zup.nossacasacodigo.purchase;
 
 import java.math.BigDecimal;
+import java.util.Optional;
 
 import br.com.zup.nossacasacodigo.cart.Cart;
 import br.com.zup.nossacasacodigo.cart.CartItem;
 
 public class Purchase {
-	Cart cart;
-	DiscountCoupon coupon;
+	private Cart cart;
+	private DiscountCoupon coupon;
 	int id;
 	
-	public Purchase(Cart cart, DiscountCoupon coupon, int id) {
+	public Purchase(Cart cart, int id) {
 		this.cart = cart;
-		this.coupon = coupon;
 		this.id = id;
 	}
 	
@@ -27,4 +27,10 @@ public class Purchase {
 		return finalValue;
 	}
 	
+	public void addDiscountCoupon(Optional<DiscountCoupon> discount) {
+		if(discount.isPresent()) {
+			this.coupon = discount.get();
+		}
+
+	}
 }

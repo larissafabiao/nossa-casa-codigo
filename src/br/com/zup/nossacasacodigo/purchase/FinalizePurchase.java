@@ -85,7 +85,8 @@ public class FinalizePurchase {
 		}
 	
 		Optional<DiscountCoupon> discount = db.searchCoupon(coupon.get());
-		Purchase purchase = new Purchase(cart, discount.get(), generateId());
+		Purchase purchase = new Purchase(cart, generateId());
+		purchase.addDiscountCoupon(discount);
 		client.addPurchase(purchase);
 		System.out.println("id da compra: " + id + ",   valor final: " + cart.calculateFinalValue());
 	}
